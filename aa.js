@@ -82,7 +82,7 @@ if (casper.cli.has("debug")) {
   });
 }
 
-casper.options.waitTimeout = 15000;
+casper.options.waitTimeout = 25000;
 
 casper.start();
 
@@ -150,60 +150,91 @@ casper.waitForSelector("#submitDates", function() {
   this.click('a[id="ctnButton"]');
 });
 
-/*
-  routes.push({
-     depart: $(this).find('.tdDepart div:eq(3)').text(),
-     depart_datetime: $(this).find('.tdDepart div:eq(1)').text() + ' ' + $(this).find('.tdDepart div:eq(2)').text(),
-     arrival: $(this).find('.tdArrive div:eq(3)').text(),
-     arrival_datetime: $(this).find('.tdArrive div:eq(1)').text() + $(this).find('.tdDepart div:eq(2)').text(),
-     flight_time: $(this).find('.tdTrvlTime > span:eq(0)').text().replace(/Flight Time:/g, "").replace(/Travel Time:/g, ""),
-     aircraft: $(this).find('.tdSegmentDtl div:eq(2) > b').text(),
-     operated: $(this).find('.tdSegmentDtl div:eq(1)').text(),
-     flight_number: $(this).find('.tdSegmentDtl div:eq(0)').text().replace(/Flight\: /g, "")
-  });
-
-  award = {
-    award: 'Saver Award',
-    mileage: 'xxx',
-    seats_available: 10
-  };
-
-// Number of seats available
-
-fares = [
-  { 
-    'routes' : [ ],
-    'awards' : [ ]
-  }
-];
-
-*/
-
-casper.waitForSelector("#selectFlightHeader", function() { 
+// TODO if timesout, return output to a file to debug
+casper.waitForSelector("#flightListContainer", function() { 
+//   casper.then(function() {
   var js = this.evaluate(function() {
     // data = jQuery('html').html(); 
     
     fare = [];
     routes = [];
-    jQuery('#flightListContainer').map(function() {  
-      jQuery('.ca_flightSlice').map(function() {
-        routes.push({
-          depart: jQuery(this).find('.aa_flightList_col-3 p span:eq(0)').text(),
-          depart_datetime: jQuery(this).find('.aa_flightList_col-3 p strong:eq(0)').text(),
-          arrival: jQuery(this).find('.aa_flightList_col-4 p span:eq(0)').text(),
-          arrival_datetime: jQuery(this).find('.aa_flightList_col-4 p strong:eq(0)').text(),
-          // AA flight tie shows the entire time for flight, not each leg
-          // flight_time: jQuery(this).find('.ca_flightDetails table tr td:contains("Total travel time")').text().replace('Total travel time:', '').trim(),
-          operated: jQuery(this).find('.ca_flightDetails table caption').text().replace('Operated by', '').trim(),
-          flight_number: jQuery(this).find('.aa_flightList_col-2 p:eq(0)').text()
-         });
+    awards = [];
+    
+    var parseFares = function(award_type) {
+      jQuery('#flightListContainer .aa_flightListContainer:not(.inactive)').map(function() { // Select fares that are not grey'd out
+    
+        awards.push({
+          award: award_type,
+          mileage: jQuery(this).find('.aa_flightList_col-1 div p').text()
+        });
+       
+        // Routes may have more then one leg
+        var legs = [];
+        jQuery('.ca_flightSlice', this).map(function() {
+          legs.push({
+            depart: jQuery(this).find('.aa_flightList_col-3 p span:eq(0)').text(),
+            depart_datetime: jQuery(this).find('.aa_flightList_col-3 p strong:eq(0)').text(),
+            arrival: jQuery(this).find('.aa_flightList_col-4 p span:eq(0)').text(),
+            arrival_datetime: jQuery(this).find('.aa_flightList_col-4 p strong:eq(0)').text(),
+            // AA flight tie shows the entire time for flight, not each leg
+            // flight_time: jQuery(this).find('.ca_flightDetails table tr td:contains("Total travel time")').text().replace('Total travel time:', '').trim(),
+            operated: jQuery(this).find('.ca_flightDetails table caption').text().replace('Operated by', '').trim(),
+            flight_number: jQuery(this).find('.aa_flightList_col-2 p:eq(0)').text()
+           });
+        });
+        
+        routes.push(legs);
       });
+    }
+    
+    // Parse Economy MileSAAver
+    jQuery('.caEconomy-Mile-SAAver div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('Economy MileSAAver');
     });
-    // console.log(routes);
+    
+    // Parse Economy AAnytime
+    jQuery('.caEconomy-AAnytime div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('Economy AAnytime');
+    });
+    
+    // Parse Business/First MileSAAver*
+    jQuery('.caBusiness-MileSAAver div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('Business/First MileSAAver*');
+    });
+    
+    // Parse Business/First AAnytime*
+    jQuery('.caBusiness-AAnytime div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('Business/First AAnytime*');
+    });
+    
+    // Parse First MileSAAver
+    jQuery('.caFirst-MileSAAver div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('First MileSAAver');
+    });
+    
+    // Parse First Annytime
+    jQuery('.caFirst-AAnytime div').click();
+    jQuery('#pgNt li').map(function() { // loop through pagination
+      jQuery(this).click();
+      parseFares('First AAnytime');
+    });
+    
     fare.push({
-      awards: [],
+      awards: awards,
       route: routes
     });
+    
+    console.log(fare);
     
     return fare;
   });
