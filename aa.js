@@ -86,7 +86,7 @@ casper.options.waitTimeout = 25000;
 
 casper.start();
 
-console.log(moment(depart_date).format("M"));
+// console.log(moment(depart_date).format("M"));
 
 casper.thenOpen('http://www.aa.com/reservation/awardFlightSearchOptionsSubmit.do', {
     method: 'post',
@@ -147,12 +147,24 @@ casper.thenOpen('http://www.aa.com/reservation/awardFlightSearchOptionsSubmit.do
 });
 
 casper.waitForSelector("#submitDates", function() { 
-  this.click('a[id="ctnButton"]');
-});
+  this.click('a[id="ctnButton"]'); // sometimes, even after the button is clicked, doesn't redirect; perhaps resources not finished loading?
+}, function() {
+  
+  // if times out, write response to log file
+  var html = this.evaluate(function() {
+    data = jQuery('html').html(); 
+    return data;
+  });
+  
+  try {
+    fs.write("log-aa.html", html, 'w');
+  } catch(e) {
+      console.log(e);
+  }
+  
+}, 15000);
 
-// TODO if timesout, return output to a file to debug
 casper.waitForSelector("#flightListContainer", function() { 
-//   casper.then(function() {
   var js = this.evaluate(function() {
     // data = jQuery('html').html(); 
     
@@ -165,8 +177,10 @@ casper.waitForSelector("#flightListContainer", function() {
     
         awards.push({
           award: award_type,
-          mileage: jQuery(this).find('.aa_flightList_col-1 div p').text()
+          mileage: jQuery(this).find('.aa_flightList_col-1 div p').text() // TODO bug
         });
+        
+        console.log(jQuery(this).find('.aa_flightList_col-1 div p').text());
        
         // Routes may have more then one leg
         var legs = [];
@@ -234,7 +248,7 @@ casper.waitForSelector("#flightListContainer", function() {
       route: routes
     });
     
-    console.log(fare);
+    // console.log(fare);
     
     return fare;
   });
@@ -249,6 +263,19 @@ casper.waitForSelector("#flightListContainer", function() {
   
   this.echo (JSON.stringify(js));
   
-});
+}, function() {
+  // if times out, write response to log file
+  var html = this.evaluate(function() {
+    data = jQuery('html').html(); 
+    return data;
+  });
+  
+  try {
+    fs.write("log-aa.html", html, 'w');
+  } catch(e) {
+      console.log(e);
+  }
+  
+}, 15000);
 
 casper.run();
