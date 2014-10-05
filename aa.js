@@ -1,50 +1,19 @@
 var fs = require('fs');
+var utils = require('utils');
 var system = require('system');
 var moment = require('moment');
 
 var casper = require('casper').create();
+/*
+clientScripts:  [
+	'includes/jquery.min.js'
+],
+*/
 
-
-/*	clientScripts:  [
-		'includes/jquery.min.js'
-	],
-  */
-	casper.options.pageSettings = {
-		loadImages:  false,
-		userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.6 Safari/537.11'
-	};
-
-// addDebugEvents(casper, system);
-
-function addDebugEvents(page, system) {
-  page.options.onResourceError = function (resourceError) {
-      page.reason = resourceError.errorString;
-      page.reason_url = resourceError.url;
-  };
-
-  page.options.onResourceRequested = function (request) {
-      system.stderr.writeLine('= onResourceRequested()');
-      system.stderr.writeLine('  request: ' + JSON.stringify(request, undefined, 4));
-  };
-
-  page.options.onResourceReceived = function (response) {
-      system.stderr.writeLine('= onResourceReceived()');
-      system.stderr.writeLine('  id: ' + response.id + ', stage: "' + response.stage + '", response: ' + JSON.stringify(response));
-  };
-
-  page.options.onLoadStarted = function () {
-      system.stderr.writeLine('= onLoadStarted()');
-      var currentUrl = page.evaluate(function () {
-          return window.location.href;
-      });
-      system.stderr.writeLine('  leaving url: ' + currentUrl);
-  };
-
-  page.options.onLoadFinished = function (status) {
-      system.stderr.writeLine('= onLoadFinished()');
-      system.stderr.writeLine('  status: ' + status);
-  };
-}
+casper.options.pageSettings = {
+	loadImages:  false,
+	userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.6 Safari/537.11'
+};
 
 if (!casper.cli.has("origin") || ! casper.cli.has("destination") || ! casper.cli.has("depart_date")) {
 	casper.echo("Required arguments missing: --origin=xxx --destination=xxx --passenger=x \n Additional options: --debug --verbose");
@@ -72,10 +41,25 @@ if (casper.cli.has("verbose")) {
  	casper.options.logLevel = 'debug';
 }
 
-if (casper.cli.has("debug")) {
-  casper.on('remote.message', function(msg, backtrace) {
+if (casper.cli.has("enable_debug")) {
+  casper.on('remote.message', function(msg) {
     this.echo("=========================");
     this.echo("ERROR:");
+    this.echo(msg);
+    this.echo(backtrace);
+    this.echo("=========================");
+  });
+  casper.on('error', function(msg,backtrace) {
+    this.echo("=========================");
+    this.echo("ERROR:");
+    this.echo(msg);
+    this.echo(backtrace);
+    this.echo("=========================");
+  });
+ 
+  casper.on("page.error", function(msg, backtrace) {
+    this.echo("=========================");
+    this.echo("PAGE.ERROR:");
     this.echo(msg);
     this.echo(backtrace);
     this.echo("=========================");
@@ -90,7 +74,6 @@ casper.start();
 
 casper.thenOpen('http://www.aa.com/reservation/awardFlightSearchOptionsSubmit.do', {
     method: 'post',
-
     data:   {
     'flightSearch' : 'award',
     'dateChanged' : 'false',
@@ -164,9 +147,27 @@ casper.waitForSelector("#submitDates", function() {
   
 }, 15000);
 
-casper.waitForSelector("#flightListContainer", function() { 
+casper.waitForSelector("#flightListContainer", function then() { 
+  
   var js = this.evaluate(function() {
     // data = jQuery('html').html(); 
+    
+    // Convenience function for simulating a mouse click
+    var clickElement = function (el){
+      if (typeof(el) === 'object') {
+          var ev = document.createEvent("MouseEvent");
+          ev.initMouseEvent(
+            "click",
+            true /* bubble */, 
+            true /* cancelable */,
+            window, null,
+            0, 0, 0, 0, /* coordinates */
+            false, false, false, false, /* modifier keys */
+            0 /*left*/, null
+          );
+          el.dispatchEvent(ev);
+      }
+    };
     
     fare = [];
     routes = [];
@@ -177,10 +178,10 @@ casper.waitForSelector("#flightListContainer", function() {
     
         awards.push({
           award: award_type,
-          mileage: jQuery(this).find('.aa_flightList_col-1 div p').text() // TODO bug
+          mileage: jQuery('.ca_flightSlice .aa_flightList_col-1 div p', this).text() // TODO bug
         });
         
-        console.log(jQuery(this).find('.aa_flightList_col-1 div p').text());
+        // console.log(jQuery('.ca_flightSlice', this).text());
        
         // Routes may have more then one leg
         var legs = [];
@@ -200,46 +201,46 @@ casper.waitForSelector("#flightListContainer", function() {
         routes.push(legs);
       });
     }
-    
+
     // Parse Economy MileSAAver
-    jQuery('.caEconomy-Mile-SAAver div').click();
+    clickElement(jQuery(".caEconomy-AAnytime div")[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('Economy MileSAAver');
     });
     
     // Parse Economy AAnytime
-    jQuery('.caEconomy-AAnytime div').click();
+    clickElement(jQuery('.caEconomy-AAnytime div')[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('Economy AAnytime');
     });
     
     // Parse Business/First MileSAAver*
-    jQuery('.caBusiness-MileSAAver div').click();
+    clickElement(jQuery('.caBusiness-MileSAAver div')[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('Business/First MileSAAver*');
     });
     
     // Parse Business/First AAnytime*
-    jQuery('.caBusiness-AAnytime div').click();
+    clickElement(jQuery('.caBusiness-AAnytime div')[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('Business/First AAnytime*');
     });
     
     // Parse First MileSAAver
-    jQuery('.caFirst-MileSAAver div').click();
+    clickElement(jQuery('.caFirst-MileSAAver div')[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('First MileSAAver');
     });
     
     // Parse First Annytime
-    jQuery('.caFirst-AAnytime div').click();
+    clickElement(jQuery('.caFirst-AAnytime div')[0]);
     jQuery('#pgNt li').map(function() { // loop through pagination
-      jQuery(this).click();
+      clickElement(this);
       parseFares('First AAnytime');
     });
     
@@ -254,8 +255,12 @@ casper.waitForSelector("#flightListContainer", function() {
   });
   
   /*
+  var html_raw = this.evaluate(function() {
+    data = jQuery('html').html(); 
+    return data;
+  });
   try {
-    fs.write("output-aa.html", js, 'w');
+    fs.write("output-aa.html", html_raw, 'w');
   } catch(e) {
       console.log(e);
   }
