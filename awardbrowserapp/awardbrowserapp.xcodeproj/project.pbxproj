@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F177D2919E4CB450026382B /* casperjs in Resources */ = {isa = PBXBuildFile; fileRef = 9F177D2819E4CB450026382B /* casperjs */; };
+		9F177D2F19E4D0950026382B /* moment.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F177D2E19E4D0950026382B /* moment.js */; };
+		9F177D3319E4D3E20026382B /* alaska.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F177D3219E4D3E20026382B /* alaska.js */; };
 		F472B87819DA423A00D43C49 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472B87719DA423A00D43C49 /* main.swift */; };
 		F472B87A19DA423A00D43C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472B87919DA423A00D43C49 /* AppDelegate.swift */; };
 		F472B87C19DA423A00D43C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F472B87B19DA423A00D43C49 /* Images.xcassets */; };
@@ -25,6 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F177D2819E4CB450026382B /* casperjs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = casperjs; sourceTree = "<group>"; };
+		9F177D2E19E4D0950026382B /* moment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = moment.js; sourceTree = "<group>"; };
+		9F177D3219E4D3E20026382B /* alaska.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alaska.js; sourceTree = "<group>"; };
 		F472B87219DA423A00D43C49 /* awardbrowserapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awardbrowserapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F472B87619DA423A00D43C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F472B87719DA423A00D43C49 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -75,10 +81,10 @@
 		F472B87419DA423A00D43C49 /* awardbrowserapp */ = {
 			isa = PBXGroup;
 			children = (
+				F472B87519DA423A00D43C49 /* Supporting Files */,
 				F472B87919DA423A00D43C49 /* AppDelegate.swift */,
 				F472B87B19DA423A00D43C49 /* Images.xcassets */,
 				F472B87D19DA423A00D43C49 /* MainMenu.xib */,
-				F472B87519DA423A00D43C49 /* Supporting Files */,
 			);
 			path = awardbrowserapp;
 			sourceTree = "<group>";
@@ -86,6 +92,9 @@
 		F472B87519DA423A00D43C49 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F177D3219E4D3E20026382B /* alaska.js */,
+				9F177D2E19E4D0950026382B /* moment.js */,
+				9F177D2819E4CB450026382B /* casperjs */,
 				F472B87619DA423A00D43C49 /* Info.plist */,
 				F472B87719DA423A00D43C49 /* main.swift */,
 			);
@@ -189,6 +198,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F177D2F19E4D0950026382B /* moment.js in Resources */,
+				9F177D2919E4CB450026382B /* casperjs in Resources */,
+				9F177D3319E4D3E20026382B /* alaska.js in Resources */,
 				F472B87C19DA423A00D43C49 /* Images.xcassets in Resources */,
 				F472B87F19DA423A00D43C49 /* MainMenu.xib in Resources */,
 			);
@@ -247,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -282,6 +295,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -289,6 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -317,6 +332,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -327,7 +343,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = awardbrowserapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.10;
 			};
 			name = Debug;
 		};
@@ -338,7 +356,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = awardbrowserapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.10;
 			};
 			name = Release;
 		};
@@ -397,6 +417,7 @@
 				F472B89019DA423A00D43C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F472B89119DA423A00D43C49 /* Build configuration list for PBXNativeTarget "awardbrowserappTests" */ = {
 			isa = XCConfigurationList;
@@ -405,6 +426,7 @@
 				F472B89319DA423A00D43C49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
