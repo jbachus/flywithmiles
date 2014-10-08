@@ -41,7 +41,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // --origin=SFO --destination=JFK --depart_date=10/15/14 --verbose=true --enable_debug=true
         task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
         "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + "10/15/2014"]
+        /*
+        var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+        println(jsonResult)
+*/
+        
+        let pipe = NSPipe()
+        task.standardOutput = pipe
+        
         task.launch()
+        
+        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        // let jsonResult: String = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        
+        let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        
+        log("DEBUG")
+        println(json[0]["awards"]);
+        
+        // print(json)
     }
 
 }

@@ -689,9 +689,10 @@
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             <objectValues>
-                                <string>Item 1</string>
-                                <string>Item 2</string>
-                                <string>Item 3</string>
+                                <string>Alaska Airlines</string>
+                                <string>American Airlines</string>
+                                <string>British Airways</string>
+                                <string>United</string>
                             </objectValues>
                         </comboBoxCell>
                     </comboBox>
@@ -802,10 +803,11 @@
                         <tabViewItems>
                             <tabViewItem label="Results" identifier="1" id="QcX-N5-81s">
                                 <view key="view" ambiguous="YES" id="kpe-dT-U56">
+                                    <rect key="frame" x="10" y="33" width="723" height="334"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZo-Zv-OWq">
-                                            <rect key="frame" x="-3" y="-334" width="729" height="334"/>
+                                            <rect key="frame" x="528" y="-334" width="729" height="334"/>
                                             <clipView key="contentView" ambiguous="YES" misplaced="YES" id="ty2-Qs-EPF">
                                                 <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
