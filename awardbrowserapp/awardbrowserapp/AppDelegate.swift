@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTableViewDelegate {
                             
     @IBOutlet var window: NSWindow?
     @IBOutlet weak var fromAirport: NSTextField!
@@ -17,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var programFilter: NSComboBox!
     @IBOutlet weak var date: NSDatePicker!
     @IBOutlet weak var passengers: NSComboBox!
+    
+    @IBOutlet weak var resultsTableView: NSTableView!
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -60,6 +62,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         println(json[0]["awards"]);
         
         // print(json)
+    }
+    
+    func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
+    {
+        let numberOfRows:Int = getDataArray().count
+        return numberOfRows
+    }
+    
+    func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject!
+    {
+        var newString: (AnyObject?) = getDataArray().objectAtIndex(row).objectForKey(tableColumn.identifier)
+        // println(newString)
+
+        return newString;
+    }
+
+    func getDataArray()-> NSArray {
+        
+      var dataArray = [
+        ["save": "Save", "from": "SFO", "fromTime": "8:00 AM", "to" : "JFK", "toTime" : "9:00 PM", "airline" : "American Airlines", "flight" : "AA 192", "availability" : "First"],
+        ["save": "Save", "from": "SFO", "fromTime": "8:00 AM", "to" : "JFK", "toTime" : "9:00 PM", "airline" : "American Airlines", "flight" : "AA 192", "availability" : "First"]
+        ];
+        println(dataArray);
+        return dataArray;
     }
 
 }
