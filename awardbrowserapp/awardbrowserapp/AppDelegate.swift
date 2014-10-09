@@ -70,6 +70,8 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         // TODO backend merge fare availability with fares: [legs]
         self.dataArray = [] // empty out array from prior search
         for (key, fare) in json[0]["route"] { // a route may contain multiple legs
+            
+            var fareCount:Int = 0
             for (legKey, legValue) in fare {
                 var from = legValue["depart"].string!
                 var fromTime = legValue["depart_datetime"].string!
@@ -78,9 +80,18 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
                 var save = "Save"
                 var airline = legValue["operated"].string!
                 var flight = legValue["flight_number"].string!
-                var availability = "first"
+                var availability = "todo"
+                
+                if (fareCount > 0) {
+                    from = "  ->" + from
+                    save = ""
+                }
+                
+                // println(json[0]["awards"][key]["mileage"].string!)
                     
                 self.dataArray.append(["save": save, "from": from, "fromTime": fromTime, "to" : to, "toTime" : toTime, "airline" : airline, "flight" : flight, "availability" : availability]);
+                
+                ++fareCount
             }
         }
         
