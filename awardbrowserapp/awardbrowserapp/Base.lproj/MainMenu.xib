@@ -15,6 +15,7 @@
                 <outlet property="fromAirport" destination="u31-7R-p22" id="lWW-jh-nOF"/>
                 <outlet property="passengers" destination="b88-Dc-R32" id="zXU-ki-IPT"/>
                 <outlet property="programFilter" destination="8De-8t-AlT" id="mNI-06-WcM"/>
+                <outlet property="resultsTableView" destination="jCe-wY-2RM" id="Sn6-5t-ASe"/>
                 <outlet property="toAirport" destination="TgN-Y4-M0H" id="Xgk-2J-c7S"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>

@@ -20,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
     
     @IBOutlet weak var resultsTableView: NSTableView!
     
+    var dataArray: [Dictionary <String, String>] = []
+    
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
     }
@@ -35,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
     @IBAction func searchButton(sender: AnyObject) {
         log(self.fromAirport.stringValue + " -> " + self.toAirport.stringValue)
         log(self.date.stringValue) // todo, format to mm/dd/yyyy
-        
+    
         // make exec call here
         var task = NSTask();
         task.launchPath = "awardbrowserapp.app/Contents/Resources/casperjs/bin/casperjs"
@@ -54,14 +56,36 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         task.launch()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
+        
+        // DEBUG
         // let jsonResult: String = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        // log(jsonResult)
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
         
-        log("DEBUG")
-        println(json[0]["awards"]);
+        // DEBUG
+        println(json)
+
+        // TODO backend flatten out JSON object without json[0]
+        // TODO backend merge fare availability with fares: [legs]
+        self.dataArray = [] // empty out array from prior search
+        for (key, fare) in json[0]["route"] { // a route may contain multiple legs
+            for (legKey, legValue) in fare {
+                var from = legValue["depart"].string!
+                var fromTime = legValue["depart_datetime"].string!
+                var to = legValue["arrival"].string!
+                var toTime = legValue["arrival_datetime"].string!
+                var save = "Save"
+                var airline = legValue["operated"].string!
+                var flight = legValue["flight_number"].string!
+                var availability = "first"
+                    
+                self.dataArray.append(["save": save, "from": from, "fromTime": fromTime, "to" : to, "toTime" : toTime, "airline" : airline, "flight" : flight, "availability" : availability]);
+            }
+        }
         
-        // print(json)
+        // refresh table
+        self.resultsTableView.reloadData();
     }
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
@@ -73,19 +97,15 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
     func tableView(tableView: NSTableView!, objectValueForTableColumn tableColumn: NSTableColumn!, row: Int) -> AnyObject!
     {
         var newString: (AnyObject?) = getDataArray().objectAtIndex(row).objectForKey(tableColumn.identifier)
+        
         // println(newString)
-
+        
         return newString;
     }
 
     func getDataArray()-> NSArray {
-        
-      var dataArray = [
-        ["save": "Save", "from": "SFO", "fromTime": "8:00 AM", "to" : "JFK", "toTime" : "9:00 PM", "airline" : "American Airlines", "flight" : "AA 192", "availability" : "First"],
-        ["save": "Save", "from": "SFO", "fromTime": "8:00 AM", "to" : "JFK", "toTime" : "9:00 PM", "airline" : "American Airlines", "flight" : "AA 192", "availability" : "First"]
-        ];
-        println(dataArray);
-        return dataArray;
+        // println(self.dataArray);
+        return self.dataArray;
     }
 
 }
