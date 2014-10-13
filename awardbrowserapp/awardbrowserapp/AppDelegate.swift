@@ -119,5 +119,11 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         return self.dataArray;
     }
 
+    @IBAction func saveFareToDraft(sender: AnyObject) {
+        let rowIndex:Int = self.resultsTableView.clickedRow;
+        println(self.dataArray[rowIndex])
+    }
+
+
 }
 

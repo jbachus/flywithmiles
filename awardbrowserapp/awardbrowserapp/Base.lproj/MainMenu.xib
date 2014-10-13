@@ -818,16 +818,16 @@
                         <tabViewItems>
                             <tabViewItem label="Results" identifier="1" id="QcX-N5-81s">
                                 <view key="view" ambiguous="YES" id="kpe-dT-U56">
-                                    <rect key="frame" x="10" y="33" width="723" height="334"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZF-D0-uNw">
-                                            <rect key="frame" x="-3" y="-3" width="729" height="333"/>
+                                            <rect key="frame" x="-3" y="-337" width="729" height="333"/>
                                             <clipView key="contentView" ambiguous="YES" misplaced="YES" id="CUC-WR-84i">
                                                 <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" headerView="c4G-HC-qed" id="jCe-wY-2RM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="727" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -843,6 +843,9 @@
                                                                     <font key="font" metaFont="system"/>
                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    <connections>
+                                                                        <action selector="saveFareToDraft:" target="Voe-Tx-rLC" id="DN2-qS-Sw5"/>
+                                                                    </connections>
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
@@ -939,6 +942,7 @@
                                                             </tableColumn>
                                                         </tableColumns>
                                                         <connections>
+                                                            <action selector="performClick:" target="uq2-3V-3eh" id="1pH-cR-rrN"/>
                                                             <outlet property="dataSource" destination="Voe-Tx-rLC" id="u2L-kt-s6h"/>
                                                             <outlet property="delegate" destination="Voe-Tx-rLC" id="1qb-hM-jMq"/>
                                                         </connections>
@@ -946,7 +950,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EI8-o7-g8B">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.125" horizontal="YES" id="EI8-o7-g8B">
                                                 <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
