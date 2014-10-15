@@ -7,8 +7,15 @@
 //
 
 import Cocoa
+import CoreData
 
-class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTableViewDelegate {
+struct fares {
+    static var savedLegs: [Dictionary <String, String>] = []
+    static var jsonString: String? = ""
+    static var json: JSON? = nil
+}
+
+class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
                             
     @IBOutlet var window: NSWindow?
     @IBOutlet weak var fromAirport: NSTextField!
@@ -21,9 +28,12 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
     @IBOutlet weak var resultsTableView: NSTableView!
     
     var dataArray: [Dictionary <String, String>] = []
+    var savedLegs: [Dictionary <String, String>] = []
+    // var jsonArray: JSON?
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
+        self.dataArray = []
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
@@ -48,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         println(jsonResult)
-*/
+        */
         
         let pipe = NSPipe()
         task.standardOutput = pipe
@@ -58,13 +68,15 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
         // DEBUG
-        // let jsonResult: String = NSString(data: data, encoding: NSUTF8StringEncoding)!
-        // log(jsonResult)
+        fares.jsonString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        // println(fares.jsonString)
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
         
+        fares.json = json
+        
         // DEBUG
-        println(json)
+        // println(json)
 
         // TODO backend flatten out JSON object without json[0]
         // TODO backend merge fare availability with fares: [legs]
@@ -89,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
                 
                 // println(json[0]["awards"][key]["mileage"].string!)
                     
-                self.dataArray.append(["save": save, "from": from, "fromTime": fromTime, "to" : to, "toTime" : toTime, "airline" : airline, "flight" : flight, "availability" : availability]);
+                self.dataArray.append(["save": save, "from": from, "fromTime": fromTime, "to" : to, "toTime" : toTime, "airline" : airline, "flight" : flight, "availability" : availability, "fareId" : key, "legId" : legKey]);
                 
                 ++fareCount
             }
@@ -109,8 +121,6 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
     {
         var newString: (AnyObject?) = getDataArray().objectAtIndex(row).objectForKey(tableColumn.identifier)
         
-        // println(newString)
-        
         return newString;
     }
 
@@ -118,12 +128,54 @@ class AppDelegate: NSObject, NSApplicationDelegate,NSTableViewDataSource,NSTable
         // println(self.dataArray);
         return self.dataArray;
     }
+    
+    func getLegsArray() -> NSArray! {
+        // println("getLegsArray")
+        return self.savedLegs;
+    }
 
     @IBAction func saveFareToDraft(sender: AnyObject) {
         let rowIndex:Int = self.resultsTableView.clickedRow;
-        println(self.dataArray[rowIndex])
+        // println(self.dataArray[rowIndex])
+        
+        // let json = JSON(data: fares.jsonString, error: nil)
+        // let json = JSON(object: fares.jsonString!)
+        
+        // let json = JSON.init(data: fares.jsonString, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        var fareId: String! = self.dataArray[rowIndex]["fareId"]
+        var legId: String! = self.dataArray[rowIndex]["legId"]
+
+        /*
+        println(fareId)
+        println(legId)
+        println(fares.json?[0]["route"][fareId.toInt()!+1][legId.toInt()!+1])
+        */
+        
+        let leg: JSON! = fares.json?[0]["route"][fareId.toInt()!+1][legId.toInt()!+1]
+        
+        var from: String = leg["depart"].string!
+        var fromTime: String = leg["depart_datetime"].string!
+        var to: String = leg["arrival"].string!
+        var toTime: String = leg["arrival_datetime"].string!
+        var airline: String = leg["operated"].string!
+        var flight: String = leg["flight_number"].string!
+        var availability: String = "todo"
+        
+        // println(json[0]["awards"][key]["mileage"].string!)
+        
+        fares.savedLegs.append([
+            "savedTabRemove": "Move",
+            "savedTabFrom": from,
+            "savedTabFromTime": fromTime,
+            "savedTabTo" : to,
+            "savedTabToTime" : toTime,
+            "savedTabAirline" : airline,
+            "savedTabFlight" : flight,
+            "savedTabAvailability" : availability
+            ]);
+
+        
+        // println(fares.savedLegs)
     }
-
-
 }
 
