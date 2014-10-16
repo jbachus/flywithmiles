@@ -679,7 +679,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="769" height="587"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="769" height="587"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -822,7 +822,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Results" identifier="1" id="QcX-N5-81s">
-                                <view key="view" id="kpe-dT-U56">
+                                <view key="view" ambiguous="YES" id="kpe-dT-U56">
                                     <rect key="frame" x="10" y="33" width="723" height="334"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -833,29 +833,28 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" headerView="c4G-HC-qed" id="jCe-wY-2RM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="727" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="726" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="save" width="68.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="sOj-gg-UsV" userLabel="save">
+                                                            <tableColumn identifier="save" width="70" minWidth="50" maxWidth="70" id="sOj-gg-UsV" userLabel="save">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Save">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
-                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" identifier="save" title="Text Cell" id="uq2-3V-3eh">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <buttonCell key="dataCell" type="push" title="Save" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5ds-46-JqG">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="smallSystem"/>
                                                                     <connections>
-                                                                        <action selector="saveFareToDraft:" target="Voe-Tx-rLC" id="DN2-qS-Sw5"/>
+                                                                        <action selector="saveFareToDraft:" target="Voe-Tx-rLC" id="Hw5-ss-BlK"/>
                                                                     </connections>
-                                                                </textFieldCell>
+                                                                </buttonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="from" width="119.5" minWidth="40" maxWidth="1000" id="A39-AB-wYx">
+                                                            <tableColumn identifier="from" width="72.98828125" minWidth="40" maxWidth="1000" id="A39-AB-wYx">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="From">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -868,7 +867,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="fromTime" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="fEL-rk-2eW">
+                                                            <tableColumn identifier="fromTime" width="88.48046875" minWidth="10" maxWidth="3.4028234663852886e+38" id="fEL-rk-2eW">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -881,7 +880,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="to" width="131" minWidth="10" maxWidth="3.4028234663852886e+38" id="T0r-HJ-bfL">
+                                                            <tableColumn identifier="to" width="70.96875" minWidth="10" maxWidth="3.4028234663852886e+38" id="T0r-HJ-bfL">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="To">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -894,7 +893,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="toTime" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pzj-hM-HDa">
+                                                            <tableColumn identifier="toTime" width="81.53515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pzj-hM-HDa">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -907,7 +906,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="airline" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ra3-Pw-KrY">
+                                                            <tableColumn identifier="airline" width="99.91015625" minWidth="10" maxWidth="3.4028234663852886e+38" id="Ra3-Pw-KrY">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Airline">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -920,7 +919,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="flight" width="66" minWidth="10" maxWidth="3.4028234663852886e+38" id="Sim-UB-PHe">
+                                                            <tableColumn identifier="flight" width="95.53515625" minWidth="10" maxWidth="3.4028234663852886e+38" id="Sim-UB-PHe">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Flight #">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -933,7 +932,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="availability" width="104" minWidth="10" maxWidth="3.4028234663852886e+38" id="EGa-DM-Pua">
+                                                            <tableColumn identifier="availability" width="124" minWidth="10" maxWidth="3.4028234663852886e+38" id="EGa-DM-Pua">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Availability">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -948,7 +947,6 @@
                                                             </tableColumn>
                                                         </tableColumns>
                                                         <connections>
-                                                            <action selector="performClick:" target="uq2-3V-3eh" id="1pH-cR-rrN"/>
                                                             <outlet property="dataSource" destination="Voe-Tx-rLC" id="omj-oV-hhF"/>
                                                             <outlet property="delegate" destination="Voe-Tx-rLC" id="XiI-AH-JHb"/>
                                                         </connections>
@@ -956,7 +954,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EI8-o7-g8B">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="EI8-o7-g8B">
                                                 <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -973,7 +971,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Saved" identifier="2" id="6Ca-pT-EGp">
-                                <view key="view" ambiguous="YES" id="XJC-Fx-gMu">
+                                <view key="view" id="XJC-Fx-gMu">
                                     <rect key="frame" x="10" y="33" width="723" height="334"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -984,7 +982,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" headerView="ezC-C1-RFA" id="heg-T6-ssh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="727" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="723.5" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1084,7 +1082,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="savedTabAvailability" width="101.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="lfz-mf-ABX">
+                                                            <tableColumn identifier="savedTabAvailability" width="105" minWidth="10" maxWidth="3.4028234663852886e+38" id="lfz-mf-ABX">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Availability">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

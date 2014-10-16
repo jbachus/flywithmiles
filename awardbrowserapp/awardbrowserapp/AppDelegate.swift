@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         // --origin=SFO --destination=JFK --depart_date=10/15/14 --verbose=true --enable_debug=true
         task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
-        "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + "10/15/2014"]
+        "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + "10/20/2014"]
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         println(jsonResult)
@@ -136,6 +136,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 
     @IBAction func saveFareToDraft(sender: AnyObject) {
         let rowIndex:Int = self.resultsTableView.clickedRow;
+        
         // println(self.dataArray[rowIndex])
         
         // let json = JSON(data: fares.jsonString, error: nil)
@@ -173,7 +174,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             "savedTabFlight" : flight,
             "savedTabAvailability" : availability
             ]);
-
+        
         
         // println(fares.savedLegs)
     }
