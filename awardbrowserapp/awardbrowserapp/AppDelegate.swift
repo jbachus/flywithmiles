@@ -7,7 +7,8 @@
 //
 
 import Cocoa
-import CoreData
+import AppKit
+
 
 struct fares {
     static var savedLegs: [Dictionary <String, String>] = []
@@ -24,16 +25,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     @IBOutlet weak var programFilter: NSComboBox!
     @IBOutlet weak var date: NSDatePicker!
     @IBOutlet weak var passengers: NSComboBox!
+    @IBOutlet weak var datePickerCell: NSDatePickerCell!
+    @IBOutlet weak var statusLabel: NSTextField!
     
     @IBOutlet weak var resultsTableView: NSTableView!
     
+    @IBOutlet weak var statusLabelCell: NSTextFieldCell!
     var dataArray: [Dictionary <String, String>] = []
     var savedLegs: [Dictionary <String, String>] = []
     // var jsonArray: JSON?
     
+    // Bug: this function does not execute
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
         self.dataArray = []
+        // let currentDate = NSDate()
+        // self.datePickerCell.setDateValue(currentDate)
+        // self.passengers.selectItemAtIndex(1)
+        
+        println("Application finish loading")
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
@@ -45,16 +55,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     }
 
     @IBAction func searchButton(sender: AnyObject) {
+        self.statusLabel.stringValue = "Searching... plese wait"
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy" // superset of OP's format
+        let dateStr = dateFormatter.stringFromDate(self.date.dateValue)
+        
         log(self.fromAirport.stringValue + " -> " + self.toAirport.stringValue)
-        log(self.date.stringValue) // todo, format to mm/dd/yyyy
-    
+        log(dateStr)
+        log(self.passengers.stringValue)
+        
         // make exec call here
         var task = NSTask();
         task.launchPath = "awardbrowserapp.app/Contents/Resources/casperjs/bin/casperjs"
         
         // --origin=SFO --destination=JFK --depart_date=10/15/14 --verbose=true --enable_debug=true
         task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
-        "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + "10/20/2014"]
+        "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + dateStr, "--passengers=" + self.passengers.stringValue,]
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         println(jsonResult)
@@ -72,6 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         // println(fares.jsonString)
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        println(json)
         
         fares.json = json
         
@@ -109,6 +127,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         // refresh table
         self.resultsTableView.reloadData();
+        self.statusLabel.stringValue = ""
     }
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
@@ -136,6 +155,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
 
     @IBAction func saveFareToDraft(sender: AnyObject) {
         let rowIndex:Int = self.resultsTableView.clickedRow;
+
+       // let rowClick: AnyObject? = self.resultsTableView.rowViewAtRow(rowIndex, makeIfNecessary: true)
+        // rowClick:backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.9, alpha: 1.0)
+       // println(rowClick)
+        
+        println(self.resultsTableView.rowViewAtRow(5, makeIfNecessary: true))
         
         // println(self.dataArray[rowIndex])
         
@@ -175,6 +200,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             "savedTabAvailability" : availability
             ]);
         
+        self.statusLabel.stringValue = from + " - " + to + " copied to saved tab."
         
         // println(fares.savedLegs)
     }
