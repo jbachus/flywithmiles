@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             
     @IBOutlet var window: NSWindow?
     @IBOutlet weak var dataSource: NSComboBox!
-    @IBOutlet weak var programFilter: NSComboBox!
     @IBOutlet weak var date: NSDatePicker!
     @IBOutlet weak var passengers: NSComboBox!
     @IBOutlet weak var datePickerCell: NSDatePickerCell!
