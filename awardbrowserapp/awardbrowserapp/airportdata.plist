@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>airportArray</key>
+        <array>
+            <dict>
+                <key>airport_code</key>
+                <string>JFK</string>
+                <key>id</key>
+                <string>0</string>
+                <key>location_name</key>
+                <string>JFK - New York, New York'</string>
+            </dict>
+            <dict>
+                <key>airport_code</key>
+                <string>ATL</string>
+                <key>id</key>
+                <string>1</string>
+                <key>location_name</key>
+                <string>ATL - Atlanta, GA</string>
+            </dict>
+        </array>
+    </dict>
+</plist>
