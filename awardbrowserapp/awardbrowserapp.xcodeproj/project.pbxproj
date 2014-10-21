@@ -11,8 +11,8 @@
 		9F177D2F19E4D0950026382B /* moment.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F177D2E19E4D0950026382B /* moment.js */; };
 		9F177D3319E4D3E20026382B /* alaska.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F177D3219E4D3E20026382B /* alaska.js */; };
 		9F177D3519E4E50C0026382B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F177D3419E4E50C0026382B /* JSON.swift */; };
-		9F44C37519F5BEC1004909F2 /* airportDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44C37419F5BEC1004909F2 /* airportDataController.swift */; };
 		9FA5E49419EC4EF7008B630B /* savedTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5E49319EC4EF7008B630B /* savedTabController.swift */; };
+		9FFA955E19F6BE920085DAB7 /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FFA955D19F6BE920085DAB7 /* airports.json */; };
 		F472B87819DA423A00D43C49 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472B87719DA423A00D43C49 /* main.swift */; };
 		F472B87A19DA423A00D43C49 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F472B87919DA423A00D43C49 /* AppDelegate.swift */; };
 		F472B87C19DA423A00D43C49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F472B87B19DA423A00D43C49 /* Images.xcassets */; };
@@ -35,8 +35,8 @@
 		9F177D2E19E4D0950026382B /* moment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = moment.js; sourceTree = "<group>"; };
 		9F177D3219E4D3E20026382B /* alaska.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alaska.js; sourceTree = "<group>"; };
 		9F177D3419E4E50C0026382B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		9F44C37419F5BEC1004909F2 /* airportDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = airportDataController.swift; sourceTree = "<group>"; };
 		9FA5E49319EC4EF7008B630B /* savedTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = savedTabController.swift; sourceTree = "<group>"; };
+		9FFA955D19F6BE920085DAB7 /* airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airports.json; sourceTree = "<group>"; };
 		F472B87219DA423A00D43C49 /* awardbrowserapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awardbrowserapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F472B87619DA423A00D43C49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F472B87719DA423A00D43C49 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 				F472B87D19DA423A00D43C49 /* MainMenu.xib */,
 				9F177D3419E4E50C0026382B /* JSON.swift */,
 				9FA5E49319EC4EF7008B630B /* savedTabController.swift */,
-				9F44C37419F5BEC1004909F2 /* airportDataController.swift */,
+				9FFA955D19F6BE920085DAB7 /* airports.json */,
 			);
 			path = awardbrowserapp;
 			sourceTree = "<group>";
@@ -207,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FFA955E19F6BE920085DAB7 /* airports.json in Resources */,
 				9F177D2F19E4D0950026382B /* moment.js in Resources */,
 				9F177D2919E4CB450026382B /* casperjs in Resources */,
 				9F177D3319E4D3E20026382B /* alaska.js in Resources */,
@@ -230,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F177D3519E4E50C0026382B /* JSON.swift in Sources */,
-				9F44C37519F5BEC1004909F2 /* airportDataController.swift in Sources */,
 				9FA5E49419EC4EF7008B630B /* savedTabController.swift in Sources */,
 				F472B87A19DA423A00D43C49 /* AppDelegate.swift in Sources */,
 				F472B87819DA423A00D43C49 /* main.swift in Sources */,
@@ -303,7 +303,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = x86_64;
@@ -341,6 +341,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};

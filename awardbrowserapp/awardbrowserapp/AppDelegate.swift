@@ -36,23 +36,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.dataArray = []
         
         let currentDate = NSDate()
-        self.datePickerCell.dateValue = currentDate
+        self.datePickerCell.dateValue = currentDate // set date picker to today's date'
         
-        self.passengers.selectItemAtIndex(0)
+        self.passengers.selectItemAtIndex(0) // set passengers to 1
+
+        // Load airports into combo boxes
+        let path = NSBundle.mainBundle().pathForResource("airports", ofType: "json")
+        let data = NSData(contentsOfFile: path!)!
+        let json = JSON(data: data)
         
-        var ad = airportDataController.airportData()
-        var airportsArray: [[String: String]] = ad.airportsArray
-        
-        for item in airportsArray {
-            self.fromAirportComboBox.addItemWithObjectValue(item["location_name"]!);
-            self.toAirportComboxBox.addItemWithObjectValue(item["location_name"]!);
+        for (key: String, subJson: JSON) in json {
+            self.fromAirportComboBox.addItemWithObjectValue(subJson["location_name"].stringValue);
+            self.toAirportComboxBox.addItemWithObjectValue(subJson["location_name"].stringValue);
         }
     }
     
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
     }
-    
     
     func log(logMessage: String, functionName: String = __FUNCTION__) {
         println("\(functionName): \(logMessage)")
@@ -67,12 +68,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         log(self.fromAirportComboBox.stringValue + " -> " + self.toAirportComboxBox.stringValue)
         log(dateStr)
+
+        let path = NSBundle.mainBundle().pathForResource("airports", ofType: "json")
+        let jsonData = NSData(contentsOfFile: path!)!
+        let jsonAirports = JSON(data: jsonData)
         
-        var ad = airportDataController.airportData()
-        var airportsArray: [[String: String]] = ad.airportsArray
-        
-        var fromAirportCode = airportsArray[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"]
-        var toAirportCode = airportsArray[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"]
+        var fromAirportCode = jsonAirports[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"].stringValue
+        var toAirportCode = jsonAirports[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"].stringValue
         
         var passengers = self.passengers.stringValue
  
@@ -80,7 +82,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         var task = NSTask();
         task.launchPath = "awardbrowserapp.app/Contents/Resources/casperjs/bin/casperjs"
         task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
-        "--origin=" + fromAirportCode!, "--destination=" + toAirportCode!, "--depart_date=" + dateStr, "--passengers=" + passengers]
+        "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passengers=" + passengers]
         
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
