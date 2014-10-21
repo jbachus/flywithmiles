@@ -9,7 +9,6 @@
 import Cocoa
 import AppKit
 
-
 struct fares {
     static var savedLegs: [Dictionary <String, String>] = []
     static var jsonString: String? = ""
@@ -19,36 +18,41 @@ struct fares {
 class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
                             
     @IBOutlet var window: NSWindow?
-    @IBOutlet weak var fromAirport: NSTextField!
-    @IBOutlet weak var toAirport: NSTextField!
     @IBOutlet weak var dataSource: NSComboBox!
     @IBOutlet weak var programFilter: NSComboBox!
     @IBOutlet weak var date: NSDatePicker!
     @IBOutlet weak var passengers: NSComboBox!
     @IBOutlet weak var datePickerCell: NSDatePickerCell!
     @IBOutlet weak var statusLabel: NSTextField!
-    
+    @IBOutlet weak var fromAirportComboBox: NSComboBox!
+    @IBOutlet weak var toAirportComboxBox: NSComboBox!
     @IBOutlet weak var resultsTableView: NSTableView!
-    
     @IBOutlet weak var statusLabelCell: NSTextFieldCell!
+    
     var dataArray: [Dictionary <String, String>] = []
     var savedLegs: [Dictionary <String, String>] = []
-    // var jsonArray: JSON?
-    
-    // Bug: this function does not execute
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
-        // Insert code here to initialize your application
-        self.dataArray = []
-        // let currentDate = NSDate()
-        // self.datePickerCell.setDateValue(currentDate)
-        // self.passengers.selectItemAtIndex(1)
-        
-        println("Application finish loading")
-    }
 
+    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+        self.dataArray = []
+        
+        let currentDate = NSDate()
+        self.datePickerCell.dateValue = currentDate
+        
+        self.passengers.selectItemAtIndex(0)
+        
+        var ad = airportDataController.airportData()
+        var airportsArray: [[String: String]] = ad.airportsArray
+        
+        for item in airportsArray {
+            self.fromAirportComboBox.addItemWithObjectValue(item["location_name"]!);
+            self.toAirportComboxBox.addItemWithObjectValue(item["location_name"]!);
+        }
+    }
+    
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
     }
+    
     
     func log(logMessage: String, functionName: String = __FUNCTION__) {
         println("\(functionName): \(logMessage)")
@@ -61,17 +65,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         dateFormatter.dateFormat = "MM-dd-yyyy" // superset of OP's format
         let dateStr = dateFormatter.stringFromDate(self.date.dateValue)
         
-        log(self.fromAirport.stringValue + " -> " + self.toAirport.stringValue)
+        log(self.fromAirportComboBox.stringValue + " -> " + self.toAirportComboxBox.stringValue)
         log(dateStr)
-        log(self.passengers.stringValue)
         
-        // make exec call here
+        var ad = airportDataController.airportData()
+        var airportsArray: [[String: String]] = ad.airportsArray
+        
+        var fromAirportCode = airportsArray[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"]
+        var toAirportCode = airportsArray[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"]
+        
+        var passengers = self.passengers.stringValue
+ 
+        // call external task
         var task = NSTask();
         task.launchPath = "awardbrowserapp.app/Contents/Resources/casperjs/bin/casperjs"
-        
-        // --origin=SFO --destination=JFK --depart_date=10/15/14 --verbose=true --enable_debug=true
         task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
-        "--origin=" + self.fromAirport.stringValue, "--destination=" + self.toAirport.stringValue, "--depart_date=" + dateStr, "--passengers=" + self.passengers.stringValue,]
+        "--origin=" + fromAirportCode!, "--destination=" + toAirportCode!, "--depart_date=" + dateStr, "--passengers=" + passengers]
+        
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         println(jsonResult)
@@ -84,8 +94,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
-        // DEBUG
         fares.jsonString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        // DEBUG
         // println(fares.jsonString)
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)

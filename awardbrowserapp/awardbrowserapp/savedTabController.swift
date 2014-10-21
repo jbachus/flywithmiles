@@ -9,9 +9,13 @@
 import Foundation
 import Cocoa
 
-class savedTabController: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
+class savedTabController: NSObject, NSTableViewDataSource, NSTableViewDelegate {
     
     @IBOutlet weak var savedTableView: NSTableView!
+    
+    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+        println("test")
+    }
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {

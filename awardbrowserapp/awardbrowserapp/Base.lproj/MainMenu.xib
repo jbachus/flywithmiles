@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6249" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6249"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="JN0-aI-kTb"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="au7-Nz-Tsm" customClass="savedTabController" customModule="awardbrowserapp" customModuleProvider="target">
@@ -18,13 +21,13 @@
                 <outlet property="dataSource" destination="Cqq-2v-daF" id="QvL-Ep-OTZ"/>
                 <outlet property="date" destination="OEH-g3-miM" id="W4M-UG-KUI"/>
                 <outlet property="datePickerCell" destination="Lh3-7Y-bwe" id="tQR-Tt-DpL"/>
-                <outlet property="fromAirport" destination="u31-7R-p22" id="lWW-jh-nOF"/>
+                <outlet property="fromAirportComboBox" destination="mhx-pH-yOR" id="jwA-Il-Bqu"/>
                 <outlet property="passengers" destination="b88-Dc-R32" id="zXU-ki-IPT"/>
                 <outlet property="programFilter" destination="8De-8t-AlT" id="mNI-06-WcM"/>
                 <outlet property="resultsTableView" destination="jCe-wY-2RM" id="2gx-2u-9A5"/>
                 <outlet property="statusLabel" destination="0MA-Me-UuW" id="dUd-cU-rK4"/>
                 <outlet property="statusLabelCell" destination="Jap-Va-Wce" id="WbM-v5-3gP"/>
-                <outlet property="toAirport" destination="TgN-Y4-M0H" id="Xgk-2J-c7S"/>
+                <outlet property="toAirportComboxBox" destination="ydq-KD-C8u" id="4Hs-MU-NNo"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -681,14 +684,14 @@
         <window title="awardbrowserapp" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="769" height="587"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="769" height="587"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cqq-2v-daF">
                         <rect key="frame" x="285" y="533" width="293" height="26"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="FpF-Xj-WqX">
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="FpF-Xj-WqX">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -702,15 +705,10 @@
                     </comboBox>
                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8De-8t-AlT">
                         <rect key="frame" x="285" y="505" width="293" height="26"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="w1x-gI-9eJ">
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="w1x-gI-9eJ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            <objectValues>
-                                <string>Item 1</string>
-                                <string>Item 2</string>
-                                <string>Item 3</string>
-                            </objectValues>
                         </comboBoxCell>
                     </comboBox>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kfA-A8-xar">
@@ -751,22 +749,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u31-7R-p22">
-                        <rect key="frame" x="62" y="435" width="381" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="SFO" placeholderString="Enter departure airport" drawsBackground="YES" id="CZJ-ow-ihN">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TgN-Y4-M0H">
-                        <rect key="frame" x="62" y="403" width="381" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="ANC" placeholderString="Enter destination airport" drawsBackground="YES" id="9la-59-Y15">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OEH-g3-miM">
                         <rect key="frame" x="535" y="435" width="139" height="27"/>
                         <datePickerCell key="cell" state="on" borderStyle="bezel" alignment="left" id="Lh3-7Y-bwe">
@@ -783,7 +765,7 @@
                     </datePicker>
                     <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b88-Dc-R32">
                         <rect key="frame" x="603" y="399" width="53" height="26"/>
-                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="1" placeholderString="" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="uiv-Bs-wyG">
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="uiv-Bs-wyG">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -958,7 +940,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="EI8-o7-g8B">
+                                            <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="EI8-o7-g8B">
                                                 <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1199,10 +1181,32 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mhx-pH-yOR">
+                        <rect key="frame" x="65" y="432" width="423" height="26"/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="v4U-0p-UlW">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </comboBoxCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="K6F-6s-hp8"/>
+                        </connections>
+                    </comboBox>
+                    <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydq-KD-C8u">
+                        <rect key="frame" x="65" y="400" width="423" height="26"/>
+                        <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="qmk-BR-U8d">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </comboBoxCell>
+                        <connections>
+                            <outlet property="delegate" destination="Voe-Tx-rLC" id="cdb-eH-x8G"/>
+                        </connections>
+                    </comboBox>
                 </subviews>
             </view>
             <connections>
-                <outlet property="delegate" destination="Voe-Tx-rLC" id="iKk-Z4-XoQ"/>
+                <outlet property="initialFirstResponder" destination="dKO-Hu-OII" id="B1d-zd-ZtH"/>
             </connections>
             <point key="canvasLocation" x="573.5" y="420.5"/>
         </window>
