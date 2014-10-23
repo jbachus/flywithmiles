@@ -192,7 +192,7 @@ casper.waitForSelector("#ShoppingForm", function() {
             arrival_datetime: $(this).find('div:eq(6)').text(),
             operated: $(this).find('.FlightCarrierImage img').attr('title'),
             flight_number: $(this).find('div:eq(1)').contents().get(0).nodeValue,
-            availability: this.availability
+            availability: availability.join()
            });
         });
         routes.push(legs);

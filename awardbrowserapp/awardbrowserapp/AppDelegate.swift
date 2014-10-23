@@ -122,15 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 var save = "Save"
                 var airline = legValue["operated"].string!
                 var flight = legValue["flight_number"].string!
-
-                var availabilityList = legValue["availability"]
-                var tempAvailabilityList = [String]()
-
-                for (key, value) in availabilityList {
-                    tempAvailabilityList.append(value.string!)
-                }
-
-                var availability = ", " . join(tempAvailabilityList.map({ String($0) }))
+                var availability = legValue["availability"].string!
                 
                 if (fareCount > 0) {
                     from = "  ->" + from
