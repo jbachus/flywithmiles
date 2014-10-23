@@ -16,7 +16,7 @@ casper.options.pageSettings = {
 };
 
 if (!casper.cli.has("origin") || ! casper.cli.has("destination") || ! casper.cli.has("depart_date")) {
-	casper.echo("Required arguments missing: --origin=xxx --destination=xxx --passenger=x \n Additional options: --debug --verbose");
+	casper.echo("Required arguments missing: --origin=xxx --destination=xxx --passenger=x \n Additional options: --enable_debug --verbose");
 	casper.exit();
 }
 
@@ -149,58 +149,62 @@ casper.thenOpen('https://www.alaskaair.com/Shopping/Flights/Shop', {
 casper.waitForSelector("#ShoppingForm", function() { 
   // casper.then(function() {
   // if times out, write response to log file
-  var js = this.evaluate(function() {
+  var data = this.evaluate(function() {
     // data = jQuery('html').html(); 
-    
-    fare = [];
-    routes = [];
-    awards = [];
-    
-    var parseFares = function(award_type, css_class) {
-      $('#MatrixTable0 tr.Option.AS').map(function() {
+
+    var routes = [];    
+    var parseFares = function() {
+      $('#MatrixTable0 tr.Option').map(function() {
+                
+        var legs = [];
+        var availability = [];
         
-        if ($('td.' + css_class + ' .PriceCell input', this).length === 0) {
-          return;
+        if ($('td.CoachAwardColumn .PriceCell input', this).length > 0) {
+          availability.push('Coach Lowest');
+        }
+
+        if ($('td.CoachFullFlexColumn .PriceCell input', this).length > 0) {
+          availability.push('Coach Refundable');
+        }
+
+        if ($('td.PremiumEconomyColumn .PriceCell input', this).length > 0) {
+          availability.push('Premium Economy');
         }
         
-        awards.push({
-          award: award_type,
-          mileage: $('td.' + css_class + ' .Price', this).text().replace(/k(.)*/g, "") // TODO bug
-        });
+        if ($('td.BusinessAwardColumn .PriceCell input', this).length > 0) {
+          availability.push('Business');
+        }
         
-        var legs = [];
+        if ($('td.FirstAwardColumn .PriceCell input', this).length > 0) {
+          availability.push('First');
+        }
+        
+        if ($('td.FirstFullFlexColumn .PriceCell input', this).length > 0) {
+          availability.push('First Refundable');
+        }
+        
+        // should be flat, no legs
         $('.AwardFlightCell > ul > li div.SegmentDiv ', this).map(function() {
           legs.push({
             depart: $(this).find('div:eq(3)').text(),
             depart_datetime: $(this).find('div:eq(4)').text(),
             arrival: $(this).find('div:eq(5)').text(),
             arrival_datetime: $(this).find('div:eq(6)').text(),
-            // AA flight tie shows the entire time for flight, not each leg
-            // flight_time: jQuery(this).find('.ca_flightDetails table tr td:contains("Total travel time")').text().replace('Total travel time:', '').trim(),
             operated: $(this).find('.FlightCarrierImage img').attr('title'),
-            flight_number: $(this).find('div:eq(1)').text()
+            flight_number: $(this).find('div:eq(1)').contents().get(0).nodeValue,
+            availability: this.availability
            });
         });
         routes.push(legs);
       });
     };
     
-    parseFares('Coach Lowest', '.CoachAwardColumn');
-    parseFares('Coach Refundable', '.CoachFullFlexColumn');
-    parseFares('Premium Economy', '.PremiumEconomyColumn');
-    parseFares('Business', '.BusinessAwardColumn');
-    parseFares('First', '.FirstAwardColumn');
-    parseFares('First Refundable', '.FirstFullFlexColumn');
-    
-    fare.push({
-      awards: awards,
-      route: routes
-    });
-        
-    return fare;
+    parseFares();
+            
+    return routes;
   });
   
-  this.echo (JSON.stringify(js));
+  this.echo (JSON.stringify(data));
   
   /*
   try {

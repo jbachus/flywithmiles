@@ -15,6 +15,7 @@ struct fares {
     static var json: JSON? = nil
 }
 
+
 class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
                             
     @IBOutlet var window: NSWindow?
@@ -110,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         // TODO backend flatten out JSON object without json[0]
         // TODO backend merge fare availability with fares: [legs]
         self.dataArray = [] // empty out array from prior search
-        for (key, fare) in json[0]["route"] { // a route may contain multiple legs
+        for (key, fare) in json { // a route may contain multiple legs
             
             var fareCount:Int = 0
             for (legKey, legValue) in fare {
@@ -121,7 +122,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 var save = "Save"
                 var airline = legValue["operated"].string!
                 var flight = legValue["flight_number"].string!
-                var availability = "todo"
+
+                var availabilityList = legValue["availability"]
+                var tempAvailabilityList = [String]()
+
+                for (key, value) in availabilityList {
+                    tempAvailabilityList.append(value.string!)
+                }
+
+                var availability = ", " . join(tempAvailabilityList.map({ String($0) }))
                 
                 if (fareCount > 0) {
                     from = "  ->" + from
