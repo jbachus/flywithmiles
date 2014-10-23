@@ -189,7 +189,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         println(fares.json?[0]["route"][fareId.toInt()!+1][legId.toInt()!+1])
         */
         
-        let leg: JSON! = fares.json?[0]["route"][fareId.toInt()!+1][legId.toInt()!+1]
+        let leg: JSON! = fares.json?[fareId.toInt()!+1][legId.toInt()!+1]
         
         var from: String = leg["depart"].string!
         var fromTime: String = leg["depart_datetime"].string!
@@ -197,7 +197,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         var toTime: String = leg["arrival_datetime"].string!
         var airline: String = leg["operated"].string!
         var flight: String = leg["flight_number"].string!
-        var availability: String = "todo"
+        var availability: String = leg["availability"].string!
         
         // println(json[0]["awards"][key]["mileage"].string!)
         
