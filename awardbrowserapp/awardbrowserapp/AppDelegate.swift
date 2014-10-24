@@ -8,6 +8,7 @@
 
 import Cocoa
 import AppKit
+import Darwin
 
 struct fares {
     static var savedLegs: [Dictionary <String, String>] = []
@@ -77,12 +78,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         var toAirportCode = jsonAirports[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"].stringValue
         
         var passengers = self.passengers.stringValue
+
+        var script = "alaska.js"
+        switch self.dataSource.indexOfSelectedItem {
+            case 0:
+                script = "alaska.js"
+            case 3:
+                script = "ual.js"
+            default:
+                println("Please select a data source")
+        }
  
         // call external task
         var task = NSTask();
         task.launchPath = "awardbrowserapp.app/Contents/Resources/casperjs/bin/casperjs"
-        task.arguments = ["awardbrowserapp.app/Contents/Resources/alaska.js",
-        "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passengers=" + passengers]
+        task.arguments = ["awardbrowserapp.app/Contents/Resources/" + script,
+        "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers]
         
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
