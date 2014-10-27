@@ -9,6 +9,7 @@
 import Cocoa
 import AppKit
 import Darwin
+import Foundation
 
 struct fares {
     static var savedLegs: [Dictionary <String, String>] = []
@@ -21,8 +22,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     // @IBOutlet var window: NSWindow?
     
     @IBOutlet weak var dataSource: NSComboBox!
-    
-
     @IBOutlet weak var date: NSDatePicker!
     @IBOutlet weak var passengers: NSComboBox!
     @IBOutlet weak var datePickerCell: NSDatePickerCell!
@@ -33,8 +32,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var savedTableView: NSTableView!
     @IBOutlet weak var itineraryTableView: NSTableView!
     @IBOutlet weak var statusLabelCell: NSTextFieldCell!
-
-
     
     var dataArray: [Dictionary <String, String>] = []
     var savedLegs: [Dictionary <String, String>] = []
@@ -108,7 +105,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         task.launchPath = "flywithmiles.app/Contents/Resources/casperjs/bin/casperjs"
         task.arguments = ["flywithmiles.app/Contents/Resources/" + script,
             "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers]
-        println(task.arguments)
+        
         
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
@@ -123,6 +120,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         
         fares.jsonString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        
         // DEBUG
         // println(fares.jsonString)
         

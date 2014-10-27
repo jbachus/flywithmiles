@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <scenes>
@@ -681,19 +682,6 @@
             </objects>
             <point key="canvasLocation" x="642" y="250"/>
         </scene>
-        <!--Saved Tab Controller-->
-        <scene sceneID="0Df-Vd-WQj">
-            <objects>
-                <viewController id="mMJ-81-tEb" customClass="savedTabController" customModule="flywithmiles" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="gnI-ud-CVt">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="en8-AG-K9d" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-576" y="773"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
@@ -716,14 +704,6 @@
                                     </objectValues>
                                 </comboBoxCell>
                             </comboBox>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oy-nF-Jxd">
-                                <rect key="frame" x="46" y="555" width="84" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data Source:" id="pw3-Ia-TCA">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-cf-ONB">
                                 <rect key="frame" x="20" y="402" width="478" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="xWb-bA-tzB">
@@ -829,7 +809,7 @@
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Results" identifier="1" id="4Bs-Q0-WvT">
-                                        <view key="view" ambiguous="YES" id="04J-Kf-GSB">
+                                        <view key="view" id="04J-Kf-GSB">
                                             <rect key="frame" x="10" y="33" width="684" height="344"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1120,12 +1100,11 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Itinerary" identifier="" id="CVc-ur-f5F">
-                                        <view key="view" id="y76-q5-pxG">
-                                            <rect key="frame" x="10" y="33" width="619" height="344"/>
+                                        <view key="view" ambiguous="YES" id="y76-q5-pxG">
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKa-9b-JFm">
-                                                    <rect key="frame" x="-3" y="7" width="729" height="334"/>
+                                                    <rect key="frame" x="-3" y="-337" width="724" height="334"/>
                                                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="aSn-OS-PlT">
                                                         <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1150,7 +1129,7 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
-                                                                    <tableColumn identifier="AutomaticTableColumnIdentifier.1" width="605" minWidth="40" maxWidth="1000" id="dyq-KF-FFG">
+                                                                    <tableColumn identifier="AutomaticTableColumnIdentifier.1" width="600" minWidth="40" maxWidth="1000" id="dyq-KF-FFG">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1186,6 +1165,14 @@
                                     </tabViewItem>
                                 </tabViewItems>
                             </tabView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0oy-nF-Jxd">
+                                <rect key="frame" x="40" y="557" width="84" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Data Source:" id="pw3-Ia-TCA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
