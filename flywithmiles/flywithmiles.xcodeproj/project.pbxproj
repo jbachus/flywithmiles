@@ -1,0 +1,451 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */; };
+		9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6919FCB4E800264D56 /* Images.xcassets */; };
+		9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6B19FCB4E800264D56 /* Main.storyboard */; };
+		9FC7CE7919FCB4E800264D56 /* flywithmilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE7819FCB4E800264D56 /* flywithmilesTests.swift */; };
+		9FC7CE8319FCBA9400264D56 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE8219FCBA9400264D56 /* JSON.swift */; };
+		9FC7D0D019FCBB6F00264D56 /* ba.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7D0CA19FCBB6F00264D56 /* ba.js */; };
+		9FC7D0D119FCBB6F00264D56 /* ual.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7D0CB19FCBB6F00264D56 /* ual.js */; };
+		9FC7D0D219FCBB6F00264D56 /* alaska.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7D0CC19FCBB6F00264D56 /* alaska.js */; };
+		9FC7D0D419FCBB6F00264D56 /* moment.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7D0CE19FCBB6F00264D56 /* moment.js */; };
+		9FC7D0D519FCBB6F00264D56 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7D0CF19FCBB6F00264D56 /* jquery.min.js */; };
+		9FC7D0D719FCBB9600264D56 /* savedTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7D0D619FCBB9600264D56 /* savedTabController.swift */; };
+		9FD1744619FD308700CE90DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1744519FD308700CE90DE /* ViewController.swift */; };
+		9FD4C8CE19FDC46700700485 /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4C8CD19FDC46700700485 /* airports.json */; };
+		9FD4C8D219FDD66100700485 /* casperjs in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4C8D119FDD66100700485 /* casperjs */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9FC7CE7319FCB4E800264D56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FC7CE5819FCB4E800264D56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FC7CE5F19FCB4E800264D56;
+			remoteInfo = flywithmiles;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9FC7CE6019FCB4E800264D56 /* flywithmiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flywithmiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC7CE6419FCB4E800264D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9FC7CE6919FCB4E800264D56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9FC7CE6C19FCB4E800264D56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9FC7CE7219FCB4E800264D56 /* flywithmilesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flywithmilesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC7CE7719FCB4E800264D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FC7CE7819FCB4E800264D56 /* flywithmilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flywithmilesTests.swift; sourceTree = "<group>"; };
+		9FC7CE8219FCBA9400264D56 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		9FC7D0CA19FCBB6F00264D56 /* ba.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ba.js; sourceTree = "<group>"; };
+		9FC7D0CB19FCBB6F00264D56 /* ual.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ual.js; sourceTree = "<group>"; };
+		9FC7D0CC19FCBB6F00264D56 /* alaska.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alaska.js; sourceTree = "<group>"; };
+		9FC7D0CE19FCBB6F00264D56 /* moment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = moment.js; sourceTree = "<group>"; };
+		9FC7D0CF19FCBB6F00264D56 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		9FC7D0D619FCBB9600264D56 /* savedTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = savedTabController.swift; sourceTree = "<group>"; };
+		9FD1744519FD308700CE90DE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9FD4C8CD19FDC46700700485 /* airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airports.json; sourceTree = "<group>"; };
+		9FD4C8D119FDD66100700485 /* casperjs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = casperjs; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9FC7CE5D19FCB4E800264D56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC7CE6F19FCB4E800264D56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9FC7CE5719FCB4E800264D56 = {
+			isa = PBXGroup;
+			children = (
+				9FC7CE6219FCB4E800264D56 /* flywithmiles */,
+				9FC7CE7519FCB4E800264D56 /* flywithmilesTests */,
+				9FC7CE6119FCB4E800264D56 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9FC7CE6119FCB4E800264D56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FC7CE6019FCB4E800264D56 /* flywithmiles.app */,
+				9FC7CE7219FCB4E800264D56 /* flywithmilesTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FC7CE6219FCB4E800264D56 /* flywithmiles */ = {
+			isa = PBXGroup;
+			children = (
+				9FD4C8CD19FDC46700700485 /* airports.json */,
+				9FD1744519FD308700CE90DE /* ViewController.swift */,
+				9FC7D0D619FCBB9600264D56 /* savedTabController.swift */,
+				9FC7CE8219FCBA9400264D56 /* JSON.swift */,
+				9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */,
+				9FC7CE6919FCB4E800264D56 /* Images.xcassets */,
+				9FC7CE6B19FCB4E800264D56 /* Main.storyboard */,
+				9FC7CE6319FCB4E800264D56 /* Supporting Files */,
+			);
+			path = flywithmiles;
+			sourceTree = "<group>";
+		};
+		9FC7CE6319FCB4E800264D56 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9FD4C8D119FDD66100700485 /* casperjs */,
+				9FC7D0CA19FCBB6F00264D56 /* ba.js */,
+				9FC7D0CB19FCBB6F00264D56 /* ual.js */,
+				9FC7D0CC19FCBB6F00264D56 /* alaska.js */,
+				9FC7D0CE19FCBB6F00264D56 /* moment.js */,
+				9FC7D0CF19FCBB6F00264D56 /* jquery.min.js */,
+				9FC7CE6419FCB4E800264D56 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9FC7CE7519FCB4E800264D56 /* flywithmilesTests */ = {
+			isa = PBXGroup;
+			children = (
+				9FC7CE7819FCB4E800264D56 /* flywithmilesTests.swift */,
+				9FC7CE7619FCB4E800264D56 /* Supporting Files */,
+			);
+			path = flywithmilesTests;
+			sourceTree = "<group>";
+		};
+		9FC7CE7619FCB4E800264D56 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9FC7CE7719FCB4E800264D56 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9FC7CE5F19FCB4E800264D56 /* flywithmiles */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FC7CE7C19FCB4E800264D56 /* Build configuration list for PBXNativeTarget "flywithmiles" */;
+			buildPhases = (
+				9FC7CE5C19FCB4E800264D56 /* Sources */,
+				9FC7CE5D19FCB4E800264D56 /* Frameworks */,
+				9FC7CE5E19FCB4E800264D56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = flywithmiles;
+			productName = flywithmiles;
+			productReference = 9FC7CE6019FCB4E800264D56 /* flywithmiles.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9FC7CE7119FCB4E800264D56 /* flywithmilesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FC7CE7F19FCB4E800264D56 /* Build configuration list for PBXNativeTarget "flywithmilesTests" */;
+			buildPhases = (
+				9FC7CE6E19FCB4E800264D56 /* Sources */,
+				9FC7CE6F19FCB4E800264D56 /* Frameworks */,
+				9FC7CE7019FCB4E800264D56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9FC7CE7419FCB4E800264D56 /* PBXTargetDependency */,
+			);
+			name = flywithmilesTests;
+			productName = flywithmilesTests;
+			productReference = 9FC7CE7219FCB4E800264D56 /* flywithmilesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9FC7CE5819FCB4E800264D56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Jonathan Chum";
+				TargetAttributes = {
+					9FC7CE5F19FCB4E800264D56 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 2L9SA6Z57J;
+					};
+					9FC7CE7119FCB4E800264D56 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 9FC7CE5F19FCB4E800264D56;
+					};
+				};
+			};
+			buildConfigurationList = 9FC7CE5B19FCB4E800264D56 /* Build configuration list for PBXProject "flywithmiles" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9FC7CE5719FCB4E800264D56;
+			productRefGroup = 9FC7CE6119FCB4E800264D56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9FC7CE5F19FCB4E800264D56 /* flywithmiles */,
+				9FC7CE7119FCB4E800264D56 /* flywithmilesTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9FC7CE5E19FCB4E800264D56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FD4C8D219FDD66100700485 /* casperjs in Resources */,
+				9FC7D0D519FCBB6F00264D56 /* jquery.min.js in Resources */,
+				9FC7D0D219FCBB6F00264D56 /* alaska.js in Resources */,
+				9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */,
+				9FC7D0D019FCBB6F00264D56 /* ba.js in Resources */,
+				9FC7D0D119FCBB6F00264D56 /* ual.js in Resources */,
+				9FD4C8CE19FDC46700700485 /* airports.json in Resources */,
+				9FC7D0D419FCBB6F00264D56 /* moment.js in Resources */,
+				9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC7CE7019FCB4E800264D56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9FC7CE5C19FCB4E800264D56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC7D0D719FCBB9600264D56 /* savedTabController.swift in Sources */,
+				9FC7CE8319FCBA9400264D56 /* JSON.swift in Sources */,
+				9FD1744619FD308700CE90DE /* ViewController.swift in Sources */,
+				9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC7CE6E19FCB4E800264D56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC7CE7919FCB4E800264D56 /* flywithmilesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9FC7CE7419FCB4E800264D56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9FC7CE5F19FCB4E800264D56 /* flywithmiles */;
+			targetProxy = 9FC7CE7319FCB4E800264D56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9FC7CE6B19FCB4E800264D56 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9FC7CE6C19FCB4E800264D56 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9FC7CE7A19FCB4E800264D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9FC7CE7B19FCB4E800264D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9FC7CE7D19FCB4E800264D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = flywithmiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9FC7CE7E19FCB4E800264D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = flywithmiles/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9FC7CE8019FCB4E800264D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = flywithmilesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flywithmiles.app/Contents/MacOS/flywithmiles";
+			};
+			name = Debug;
+		};
+		9FC7CE8119FCB4E800264D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = flywithmilesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flywithmiles.app/Contents/MacOS/flywithmiles";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9FC7CE5B19FCB4E800264D56 /* Build configuration list for PBXProject "flywithmiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC7CE7A19FCB4E800264D56 /* Debug */,
+				9FC7CE7B19FCB4E800264D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9FC7CE7C19FCB4E800264D56 /* Build configuration list for PBXNativeTarget "flywithmiles" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC7CE7D19FCB4E800264D56 /* Debug */,
+				9FC7CE7E19FCB4E800264D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9FC7CE7F19FCB4E800264D56 /* Build configuration list for PBXNativeTarget "flywithmilesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC7CE8019FCB4E800264D56 /* Debug */,
+				9FC7CE8119FCB4E800264D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9FC7CE5819FCB4E800264D56 /* Project object */;
+}
