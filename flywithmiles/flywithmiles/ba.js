@@ -130,6 +130,20 @@ casper.then(function() {
     var routes = [];
     $('#directflightList0 .compact .flightListTable').map(function() {
       var legs = [];
+      var availability = [];
+      
+      if ($(this).find('.flightCabin3.colmn1 input').length > 0) {
+        availability.push('Economy');
+      }
+      
+      if ($(this).find('.flightCabin3.colmn2 input').length > 0) {
+        availability.push('Premium Economy');
+      }
+      
+      if ($(this).find('.flightCabin3.colmn3 input').length > 0) {
+        availability.push('Business Class');
+      }
+      
       legs.push({
          depart: $(this).find('.departure .airportCodeLink').text(),
          depart_datetime : $(this).find('.departure .departtime').text() + ' ' + $(this).find('.departure .departdate').text(),
@@ -139,7 +153,7 @@ casper.then(function() {
          // aircraft: $(this).find('.flightPopUp').text(),
          operated: $(this).find('input[name="MainLineCarrierCode"]')[0].value,
          flight_number: $(this).find('.flightPopUp').text(),
-         availability: "" //todo
+         availability: availability.join() 
       });
       
       routes.push(legs);
@@ -148,6 +162,20 @@ casper.then(function() {
     $('#indirectflightList0 .flightListTable').map(function() {
       
       var legs = [];
+      var availability = [];
+      
+      if ($(this).find('.flightCabin3.colmn1 input').length > 0) {
+        availability.push('Economy');
+      }
+      
+      if ($(this).find('.flightCabin3.colmn2 input').length > 0) {
+        availability.push('Premium Economy');
+      }
+      
+      if ($(this).find('.flightCabin3.colmn3 input').length > 0) {
+        availability.push('Business Class');
+      }
+      
       $(this).find('tr[id]').not(':hidden').map(function () {
         legs.push({
           depart: $(this).find('.departure .airportCodeLink').text(),
@@ -158,7 +186,7 @@ casper.then(function() {
           // aircraft: $(this).find('.flightPopUp').text(),
           operated:  ($(this).find('input[name="MainLineCarrierCode"]')[0] != undefined) ? $(this).find('input[name="MainLineCarrierCode"]')[0].value : '',
           flight_number:  $(this).find('.flightPopUp').text(),
-          availability: "" // todo
+          availability: availability.join() 
         });        
       });
       
