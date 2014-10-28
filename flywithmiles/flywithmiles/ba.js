@@ -135,11 +135,11 @@ casper.then(function() {
          depart_datetime : $(this).find('.departure .departtime').text() + ' ' + $(this).find('.departure .departdate').text(),
          arrival:  $(this).find('.arrival .airportCodeLink').text(),
          arrival_datetime: $(this).find('.arrival .arrivaltime').text() + ' ' + $(this).find('.arrival .arrivaldate').text(),
-         // flight_time: $(this).find('.journeyTime').text(),
+         flight_time: $(this).find('.journeyTime').text(),
          // aircraft: $(this).find('.flightPopUp').text(),
          operated: $(this).find('input[name="MainLineCarrierCode"]')[0].value,
          flight_number: $(this).find('.flightPopUp').text(),
-         availability: [] //todo
+         availability: "" //todo
       });
       
       routes.push(legs);
@@ -154,11 +154,11 @@ casper.then(function() {
           depart_datetime :  $(this).find('.departure .departtime').text() + ' ' + $(this).find('.departure .departdate').text(),
           arrival:   $(this).find('.arrival .airportCodeLink').text(),
           arrival_datetime:  $(this).find('.arrival .arrivaltime').text() + ' ' + $(this).find('.arrival .arrivaldate').text(),
-          // flight_time:  $(this).find('.journeyTime').text(),
+          flight_time:  $(this).find('.journeyTime').text(),
           // aircraft: $(this).find('.flightPopUp').text(),
           operated:  ($(this).find('input[name="MainLineCarrierCode"]')[0] != undefined) ? $(this).find('input[name="MainLineCarrierCode"]')[0].value : '',
           flight_number:  $(this).find('.flightPopUp').text(),
-          availability: [] // todo
+          availability: "" // todo
         });        
       });
       
