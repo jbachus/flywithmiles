@@ -71,6 +71,21 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         println("\(functionName): \(logMessage)")
     }
     
+    func receivedData(notif : NSNotification) {
+        // Unpack the FileHandle from the notification
+        let fh:NSFileHandle = notif.object as NSFileHandle
+        // Get the data from the FileHandle
+        let data = fh.availableData
+        // Only deal with the data if it actually exists
+        if data.length > 1 {
+            // Since we just got the notification from fh, we must tell it to notify us again when it gets more data
+            fh.waitForDataInBackgroundAndNotify()
+            // Convert the data into a string
+            let string = NSString(data: data, encoding: NSASCIIStringEncoding)
+            println(string!)
+        }
+    }
+    
     @IBAction func searchButton(sender: AnyObject) {
         self.statusLabel.stringValue = "Searching... plese wait"
         
@@ -90,21 +105,28 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         var passengers = self.passengers.stringValue
         
-        var script = "alaska.js"
+        var script = "alaska"
         switch self.dataSource.indexOfSelectedItem {
         case 0:
-            script = "alaska.js"
+            script = "alaska"
+        case 2:
+            script = "ba"
         case 3:
-            script = "ual.js"
+            script = "ual"
         default:
             println("Please select a data source")
         }
         
         // call external task
         var task = NSTask();
-        task.launchPath = "flywithmiles.app/Contents/Resources/casperjs/bin/casperjs"
-        task.arguments = ["flywithmiles.app/Contents/Resources/" + script,
-            "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers]
+        let casperJSPath = NSBundle.mainBundle().pathForResource("casperjs", ofType: "", inDirectory: "casperjs/bin")
+        println(casperJSPath)
+        task.launchPath = casperJSPath!
+        let scriptPath = NSBundle.mainBundle().pathForResource(script, ofType: "js")
+        println(scriptPath)
+        
+        task.arguments = [scriptPath!,
+            "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers, "--ssl-protocol=tlsv1", "--ignore-ssl-errors=yes"]
         
         
         /*
@@ -114,7 +136,18 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         let pipe = NSPipe()
         task.standardOutput = pipe
+        let fh = pipe.fileHandleForReading
+        fh.waitForDataInBackgroundAndNotify()
         
+        // Set up the observer function
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "receivedData:", name: NSFileHandleDataAvailableNotification, object: nil)
+        
+        // You can also set a function to fire after the task terminates
+        task.terminationHandler = {task -> Void in
+            // Handle the task ending here
+        }
+
         task.launch()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()

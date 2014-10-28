@@ -64,7 +64,21 @@ if (casper.cli.has("enable_debug")) {
     this.echo(backtrace);
     this.echo("=========================");
   });
+  
+  casper.on("resource.error", function(msg, trace) {
+    this.echo("=========================");
+    this.echo("resource.ERROR:");
+    this.echo (JSON.stringify(msg));
+    this.echo(backtrace);
+    this.echo("=========================");
+  });
+  
 }
+
+casper.onResourceError = function(resourceError) {
+    casper.reason = resourceError.errorString;
+    casper.reason_url = resourceError.url;
+};
 
 casper.options.waitTimeout = 25000;
 
@@ -78,11 +92,7 @@ casper.waitForSelector("#execLoginrForm", function() {
 });
 
 // #plan_trip appears after the page is fully authenticated
-casper.waitForSelector("#plan_trip", function() { });
-
-casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us?eId=106019&tab_selected=redeem&redemption_type=STD_RED', function() { });
-      
-casper.waitForSelector("#plan_redeem_trip", function() { });   
+casper.waitForSelector("#StandardRedemptionTab", function() { });
       
 casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us', {
     method: 'post',
@@ -96,7 +106,7 @@ casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us
       'hdnAgencyCode' : '',
       'departurePoint' : origin,
       'destinationPoint' : destination,
-      'departInputDate' : depart_date,
+      'departInputDate' : depart_date.replace(/-/g, "/"), // Love date formatting to fit with these damn engines!
       'oneWay' : 'true',
       'CabinCode' : 'M',
       'RestrictionType' : 'Restricted',
@@ -107,98 +117,81 @@ casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us
     }
 });
 
-casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us?eId=100028', {
-    method: 'post',
-    data:   {
-      'stopoverOptions' : 'No',
-      'display' : 'Continue',
-      'tab_selected' : 'redeem',
-      'upgradeType' : 'null',
-      'departurePoint' : origin,
-      'destinationPoint' : destination,
-      'departInputDate' : depart_date,
-      'departureStopoverPoint' : '',
-      'stopOverDepartInputDate' : '',
-      'upgradeType': null
-    }
-});
+casper.waitForSelector("#progressBar", function() { });
    
 casper.then(function() {
     
   this.page.injectJs('jquery.min.js');
-  var js = this.evaluate(function() {
+  
+  var data = this.evaluate(function() {
     // data = $('html').html(); 
     // return data;
     
-    var fares = [];
+    var routes = [];
     $('#directflightList0 .compact .flightListTable').map(function() {
-      var routes = [];
-      routes.push({
+      var legs = [];
+      legs.push({
          depart: $(this).find('.departure .airportCodeLink').text(),
          depart_datetime : $(this).find('.departure .departtime').text() + ' ' + $(this).find('.departure .departdate').text(),
          arrival:  $(this).find('.arrival .airportCodeLink').text(),
          arrival_datetime: $(this).find('.arrival .arrivaltime').text() + ' ' + $(this).find('.arrival .arrivaldate').text(),
-         flight_time: $(this).find('.journeyTime').text(),
+         // flight_time: $(this).find('.journeyTime').text(),
          // aircraft: $(this).find('.flightPopUp').text(),
          operated: $(this).find('input[name="MainLineCarrierCode"]')[0].value,
-         flight_number: $(this).find('.flightPopUp').text()
+         flight_number: $(this).find('.flightPopUp').text(),
+         availability: [] //todo
       });
       
-      fares.push(routes);
+      routes.push(legs);
     });
     
     $('#indirectflightList0 .flightListTable').map(function() {
       
-      var routes = [];
+      var legs = [];
       $(this).find('tr[id]').not(':hidden').map(function () {
-        routes.push({
+        legs.push({
           depart: $(this).find('.departure .airportCodeLink').text(),
           depart_datetime :  $(this).find('.departure .departtime').text() + ' ' + $(this).find('.departure .departdate').text(),
           arrival:   $(this).find('.arrival .airportCodeLink').text(),
           arrival_datetime:  $(this).find('.arrival .arrivaltime').text() + ' ' + $(this).find('.arrival .arrivaldate').text(),
-          flight_time:  $(this).find('.journeyTime').text(),
+          // flight_time:  $(this).find('.journeyTime').text(),
           // aircraft: $(this).find('.flightPopUp').text(),
           operated:  ($(this).find('input[name="MainLineCarrierCode"]')[0] != undefined) ? $(this).find('input[name="MainLineCarrierCode"]')[0].value : '',
-          flight_number:  $(this).find('.flightPopUp').text()
+          flight_number:  $(this).find('.flightPopUp').text(),
+          availability: [] // todo
         });        
       });
       
-      fares.push(routes);
+      routes.push(legs);
     });
     
-    return JSON.stringify(fares);
+    return routes;
     
   });
+    
+    this.echo (JSON.stringify(data));
   
-  try {
-    fs.write("output.html", js, 'w');
-  } catch(e) {
-      console.log(e);
-  }
+    /*
+    try {
+      fs.write("response-alaska-air.html", html, 'w');
+    } catch(e) {
+        console.log(e);
+    }
+    */
+  }, function() {
   
-  // this.echo (js);
-});
-
-/*
-casper.waitFor(function check() {
-    // this.page.injectJs('includes/jquery.min.js');
-  
-    return this.evaluate(function() {
-       return $('#outFlightListHeadingContainer').length > 0;
+    // if times out, write response to log file
+    var html = this.evaluate(function() {
+      data = jQuery('html').html(); 
+      return data;
     });
-}, function then() {
-    
-  var js = this.evaluate(function() {
-    data = $('html').html(); 
-    return data;
-  });
   
-  this.echo (js);
+    try {
+      fs.write("log-alaska-air.html", html, 'w');
+    } catch(e) {
+        console.log(e);
+    }
   
-}, function timeout() { 
-    this.echo (JSON.stringify({error: 'Timed out fetching dialog award details'}));
-}, 50000);
-*/
+  }, 15000);
 
-
-casper.run();
+  casper.run();
