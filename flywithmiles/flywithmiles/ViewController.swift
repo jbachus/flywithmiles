@@ -90,7 +90,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         self.statusLabel.stringValue = "Searching... plese wait"
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy" // superset of OP's format
+        dateFormatter.dateFormat = "yyyy-MM-dd" // superset of OP's format
         let dateStr = dateFormatter.stringFromDate(self.date.dateValue)
         
         log(self.fromAirportComboBox.stringValue + " -> " + self.toAirportComboxBox.stringValue)
@@ -109,6 +109,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         switch self.dataSource.indexOfSelectedItem {
         case 0:
             script = "alaska"
+        case 1:
+            script = "american-airlines"
         case 2:
             script = "ba"
         case 3:

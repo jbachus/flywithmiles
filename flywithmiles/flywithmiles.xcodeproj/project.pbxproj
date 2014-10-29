@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F53B1E31A0062830091C658 /* american-airlines.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F53B1E21A0062830091C658 /* american-airlines.js */; };
 		9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */; };
 		9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6919FCB4E800264D56 /* Images.xcassets */; };
 		9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6B19FCB4E800264D56 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F53B1E21A0062830091C658 /* american-airlines.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "american-airlines.js"; sourceTree = "<group>"; };
 		9FC7CE6019FCB4E800264D56 /* flywithmiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flywithmiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC7CE6419FCB4E800264D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		9FC7CE6319FCB4E800264D56 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9F53B1E21A0062830091C658 /* american-airlines.js */,
 				9FD4C8D119FDD66100700485 /* casperjs */,
 				9FC7D0CA19FCBB6F00264D56 /* ba.js */,
 				9FC7D0CB19FCBB6F00264D56 /* ual.js */,
@@ -224,6 +227,7 @@
 				9FC7D0D019FCBB6F00264D56 /* ba.js in Resources */,
 				9FC7D0D119FCBB6F00264D56 /* ual.js in Resources */,
 				9FD4C8CE19FDC46700700485 /* airports.json in Resources */,
+				9F53B1E31A0062830091C658 /* american-airlines.js in Resources */,
 				9FC7D0D419FCBB6F00264D56 /* moment.js in Resources */,
 				9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */,
 			);
@@ -365,6 +369,7 @@
 				INFOPLIST_FILE = flywithmiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
 			};
@@ -378,7 +383,7 @@
 				INFOPLIST_FILE = flywithmiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
 			};

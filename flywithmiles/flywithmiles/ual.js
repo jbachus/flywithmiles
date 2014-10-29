@@ -67,6 +67,10 @@ if (casper.cli.has("enable_debug")) {
 
 casper.options.waitTimeout = 25000;
 
+var dateObject = new Date(depart_date);
+var ISODate = dateObject.toISOString();
+var depart_date = moment(ISODate).format("MM-DD-YYYY");
+
 casper.start();
 
 casper.thenOpen('http://www.united.com/web/en-US/Default.aspx', function() {

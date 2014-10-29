@@ -82,6 +82,10 @@ casper.onResourceError = function(resourceError) {
 
 casper.options.waitTimeout = 25000;
 
+var dateObject = new Date(depart_date);
+var ISODate = dateObject.toISOString();
+var depart_date = moment(ISODate).format("MM/DD/YYYY"); // Love date formatting to fit with these damn engines!
+
 casper.start('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us', function() { });
 
 casper.waitForSelector("#execLoginrForm", function() {
@@ -106,7 +110,7 @@ casper.thenOpen('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us
       'hdnAgencyCode' : '',
       'departurePoint' : origin,
       'destinationPoint' : destination,
-      'departInputDate' : depart_date.replace(/-/g, "/"), // Love date formatting to fit with these damn engines!
+      'departInputDate' : depart_date, 
       'oneWay' : 'true',
       'CabinCode' : 'M',
       'RestrictionType' : 'Restricted',
