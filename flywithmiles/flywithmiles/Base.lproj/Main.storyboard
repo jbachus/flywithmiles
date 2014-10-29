@@ -647,6 +647,7 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="flywithmiles" customModuleProvider="target"/>
+                <customObject id="8sg-LO-AhL" customClass="savedTabController" customModule="flywithmiles" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -1112,6 +1113,10 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     </tableColumn>
                                                                 </tableColumns>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="aui-Ne-fzx" id="P0c-By-tY6"/>
+                                                                    <outlet property="delegate" destination="aui-Ne-fzx" id="3ZO-9J-NwF"/>
+                                                                </connections>
                                                             </tableView>
                                                         </subviews>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1134,10 +1139,11 @@
                                     </tabViewItem>
                                     <tabViewItem label="Itinerary" identifier="" id="CVc-ur-f5F">
                                         <view key="view" id="y76-q5-pxG">
+                                            <rect key="frame" x="10" y="33" width="684" height="344"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKa-9b-JFm">
-                                                    <rect key="frame" x="-3" y="-337" width="724" height="334"/>
+                                                    <rect key="frame" x="-3" y="7" width="724" height="334"/>
                                                     <clipView key="contentView" ambiguous="YES" misplaced="YES" id="aSn-OS-PlT">
                                                         <rect key="frame" x="1" y="17" width="238" height="117"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1216,12 +1222,16 @@
                         <outlet property="itineraryTableView" destination="IlW-Ib-75e" id="vgp-x5-2Rc"/>
                         <outlet property="passengers" destination="Gw2-zQ-eBO" id="k3n-ox-liD"/>
                         <outlet property="resultsTableView" destination="YLi-gI-eK5" id="OpC-Pr-LCp"/>
-                        <outlet property="savedTableView" destination="YBG-vi-YIB" id="zfa-VC-XHz"/>
                         <outlet property="statusLabel" destination="Mth-cf-ONB" id="EH3-q2-hhg"/>
                         <outlet property="toAirportComboxBox" destination="wIw-qB-GI5" id="RXQ-Fb-CcG"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="aui-Ne-fzx" customClass="savedTabController" customModule="flywithmiles" customModuleProvider="target">
+                    <connections>
+                        <outlet property="savedTableView" destination="YBG-vi-YIB" id="W7L-VT-1tq"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="74" y="842.5"/>
         </scene>
