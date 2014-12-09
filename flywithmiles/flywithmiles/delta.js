@@ -145,25 +145,52 @@ casper.thenOpen('https://www.delta.com/air-shopping/findFlights.action', {
   }
 });
 
+// expand to show all award fares
 casper.waitForSelector("#_compareFareClass_tmplHolder", function() {
   this.click('#showAll');
-  this.wait(3000);     
+  // this.wait(250);     
 });
 
-casper.then(function() {
+// Wait for AJAX request to finish
+casper.waitForResource("ResummarizeFlightResultsDWR.pageResults.dwr", function() {
   // casper.then(function() {
   // if times out, write response to log file
   
-  this.click('.detailLinkHldr');
   var data = this.evaluate(function() {
     // var routes = jQuery('html').html(); 
+    
+    // Convenience function for simulating a mouse click
+    // jQuery click embedded on Delta does not work to expand details, work around below
+    var clickElement = function(el) {
+      if (typeof(el) === 'object') {
+        var ev = document.createEvent("MouseEvent");
+        ev.initMouseEvent(
+          "click",
+          true /* bubble */ ,
+          true /* cancelable */ ,
+          window, null,
+          0, 0, 0, 0, /* coordinates */
+          false, false, false, false, /* modifier keys */
+          0 /*left*/ , null
+        );
+        el.dispatchEvent(ev);
+      }
+    };
+
+    // loop through and expand all legs
+    var i = 0;
+    $('.detailLinkHldr a').map(function() {
+      clickElement($('.detailLinkHldr a')[i]);
+      i++;
+    });
 
     var routes = [];
     var parseFares = function() {
-      $('.tableHeaderHolderFare').map(function() { 
+    
+    $('.tableHeaderHolderFare').map(function() { 
 
-        var legs = [];
-        var availability = [];
+      var legs = [];
+      var availability = [];
 
         /*
         if ($('td.CoachAwardColumn .PriceCell input', this).length > 0) {
@@ -191,12 +218,7 @@ casper.then(function() {
         }
         */
         
-       // legs.push({d:$('.detailLinkHldr, .detailLinkHldr > a')});
-      //  routes.push(legs);  
-      $(document).ready(function() {  
-        // $('.detailLinkHldr', this).click();
-        // should be flat, no legs
-        $('.fareRowDetailsContainer', this).map(function() {
+        $(this).find('.fareRowDetailsContainer').map(function() {
           if ($('.alertMsgWrapper', this).length == 0) {
                 
               legs.push({
@@ -216,23 +238,18 @@ casper.then(function() {
             };
         
          });
-          
          routes.push(legs);  
-      }); 
-          
-
-          });
-        };
+         
+        });
+      };
 
     parseFares();
                               
     return routes;
   });
     
-
   this.echo(JSON.stringify(data));
 
-  
   try {
     fs.write("response-delta.html", data, 'w');
   } catch(e) {
