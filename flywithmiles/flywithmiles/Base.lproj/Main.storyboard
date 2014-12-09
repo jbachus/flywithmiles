@@ -736,6 +736,7 @@
                                         <string>Alaska Airlines</string>
                                         <string>American Airlines</string>
                                         <string>British Airways</string>
+                                        <string>Delta</string>
                                         <string>United</string>
                                     </objectValues>
                                 </comboBoxCell>
@@ -1122,7 +1123,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
-                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2PF-Th-01S">
+                                                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="2PF-Th-01S">
                                                         <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>

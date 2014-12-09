@@ -89,6 +89,7 @@ casper.waitForSelector("#flight", function() {
 });
 */
 
+/*
 casper.start('http://www.delta.com/awards/home.do?EventId=ENTER_APPLICATION', function() { });
 
 casper.waitForSelector('#FlightSearch', function() {
@@ -99,72 +100,72 @@ casper.waitForSelector('#FlightSearch', function() {
     'departureDate[0]' : '11/24/2014'
   }, true);
 });
-
-/*
-casper.thenOpen('http://www.delta.com/awards/selectFlights.do?dispatchMethod=processFullSearch&EventId=PROCESS_RTR', {
+ */
+casper.start();
+casper.thenOpen('https://www.delta.com/air-shopping/findFlights.action', {
   method: 'post',
   data: {
-    'oneWayOrRTR':'oneWay',
-    'dispatchMethod':'processFullSearch',
-    'deptCity[0]':'ATL',
-    'returnCity[0]':'JFK',
-    'deptMonth[0]':'10',
-    'deptDay[0]':'24',
-    'deptTime[0]':'12M',
-    'deptCity[1]':'',
-    'returnCity[1]':'',
-    'deptMonth[1]':'',
-    'deptDay[1]':'',
-    'deptTime[1]':'',
-    'deptCity[2]':'',
-    'returnCity[2]':'',
-    'deptMonth[2]':'',
-    'deptDay[2]':'',
-    'deptTime[2]':'',
-    'deptCity[3]':'',
-    'returnCity[3]':'',
-    'deptMonth[3]':'',
-    'deptDay[3]':'',
-    'deptTime[3]':'',
-    'deptCity[4]':'',
-    'returnCity[4]':'',
-    'deptMonth[4]':'',
-    'deptDay[4]':'',
-    'deptTime[4]':'',
-    'deptCity[5]':'',
-    'returnCity[5]':'',
-    'deptMonth[5]':'',
-    'deptDay[5]':'',
-    'deptTime[5]':'',
-    'noPax':'1',
-    'cabin':'Coach',
-    'medallionTraveler':'0',
-    'awardshowMUUpgrade':'on',
-    'awardMUUpgrade':'on',
-    'displayPreferredOnly':'0',
-    'calendarSearch':'false',
-    'pricingSearch':'true',
-    'directServiceOnly':'off',
-    'hiddenFieldsId':'dRpgsFE6ApyEdVW',
-    'recentSearchBAU':'BAU'    
+             'searchType' : 'simple',
+             'bookingPostVerify' : 'RTR_YES',
+             'bundled' : 'off',
+             'deltaOnly' : 'off',
+             'dl' : 'y',
+             'departureTime' : 'AT',
+             'returnTime' : 'AT',
+             'directServiceOnly' : 'off',
+             'dispatchMethod' : 'findFlights',
+             'fareBundle' : 'B5-Coach',
+             'flexMainRTRTravelDate' : 'off',
+             'MUUpgrade' : 'on',
+             'showMUUpgrade' : 'on',
+             'preferItinId' : '',
+             'medallionTraveler' : '0',
+             'displayPreferredOnly' : '0',
+             'calendarSearch' : 'false',
+             'pricingSearch' : 'true',
+             'directServiceOnly' : 'off',
+             'hiddenFieldsId' : '',
+             'iamtravelling' : 'true',
+             'awardTravel' : 'true',
+             'tripType' : 'ONE_WAY',
+             'originCity' : 'JFK',
+             'destinationCity' : 'SFO',
+             'departureDate' : '1/15/2015',
+             'returnDate' : '',
+             'is_Flex_Search' : 'false',
+             'action' : 'findFlights',
+             'pageName' : 'advanceSearchPage',
+             'datesFlexible' : 'false',
+             'flexDays' : '3',
+             'cabinFareClass' : 'economyBasic',
+             'is_award_travel' : 'true',
+             'paxCount' : '1',
+             '__checkbox_smTravelling' : 'true',
+             '__checkbox_upgradeRequest' : 'true'
   }
 });
-*/
 
-casper.waitForSelector("#SelectFlightText", function() {
+casper.waitForSelector("#_compareFareClass_tmplHolder", function() {
+  this.click('#showAll');
+  this.wait(3000);     
+});
+
+casper.then(function() {
   // casper.then(function() {
   // if times out, write response to log file
+  
+  this.click('.detailLinkHldr');
   var data = this.evaluate(function() {
-    var routes = jQuery('html').html(); 
+    // var routes = jQuery('html').html(); 
 
-    /*
     var routes = [];
     var parseFares = function() {
-      $('#MatrixTable0 tr.Option').map(function() {
+      $('.tableHeaderHolderFare').map(function() { 
 
         var legs = [];
         var availability = [];
 
+        /*
         if ($('td.CoachAwardColumn .PriceCell input', this).length > 0) {
           availability.push('Coach Lowest');
         }
@@ -188,30 +189,45 @@ casper.waitForSelector("#SelectFlightText", function() {
         if ($('td.FirstFullFlexColumn .PriceCell input', this).length > 0) {
           availability.push('First Refundable');
         }
-
+        */
+        
+       // legs.push({d:$('.detailLinkHldr, .detailLinkHldr > a')});
+      //  routes.push(legs);  
+      $(document).ready(function() {  
+        // $('.detailLinkHldr', this).click();
         // should be flat, no legs
-        $('.AwardFlightCell > ul > li div.SegmentDiv ', this).map(function() {
-          legs.push({
-            depart: $(this).find('div:eq(3)').text(),
-            depart_datetime: $(this).find('div:eq(4)').text(),
-            arrival: $(this).find('div:eq(5)').text(),
-            arrival_datetime: $(this).find('div:eq(6)').text(),
-            operated: $(this).find('.FlightCarrierImage img').attr('title'),
-            flight_number: $(this).find('div:eq(1)').contents().get(0).nodeValue,
-            availability: availability.join()
+        $('.fareRowDetailsContainer', this).map(function() {
+          if ($('.alertMsgWrapper', this).length == 0) {
+                
+              legs.push({
+                depart: $(this).find('.detailsRow p:eq(0) .detailsOrigin.airportInfo').text(),
+                depart_datetime: $(this).find('.detailsRow p:eq(0)').contents().filter(function() {
+                return this.nodeType == 3;
+              }).text().replace('()', '').trim(),
+                arrival: $(this).find('.detailsRow p:eq(1) .detailsDestination.airportInfo').text(),
+                arrival_datetime: $(this).find('.detailsRow p:eq(1)').contents().filter(function() {
+                return this.nodeType == 3;
+              }).text().replace('()', '').trim(),
+                operated: $(this).find('.detailsRow p:eq(2) span:eq(1)').text().trim().slice(0,2),
+                flight_number: $(this).find('.detailsRow p:eq(2) span:eq(1)').text(),
+                availability: availability.join()
+              });
+      
+            };
+        
+         });
+          
+         routes.push(legs);  
+      }); 
+          
+
           });
-        });
-        routes.push(legs);
-      });
-    };
+        };
 
     parseFares();
-    */
-
+                              
     return routes;
   });
-    
-    
     
 
   this.echo(JSON.stringify(data));

@@ -117,6 +117,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         case 3:
             script = "ba"
         case 4:
+            script = "delta"
+        case 5:
             script = "ual"
         default:
             println("Please select a data source")
