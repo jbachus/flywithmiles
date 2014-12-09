@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9F53B1E31A0062830091C658 /* american-airlines.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F53B1E21A0062830091C658 /* american-airlines.js */; };
+		9F53B1E51A013EF30091C658 /* delta.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F53B1E41A013EF30091C658 /* delta.js */; };
+		9FAD6AFA1A368F6100265086 /* airfrance.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FAD6AF91A368F6100265086 /* airfrance.js */; };
+		9FAD6AFE1A368F9900265086 /* alaska.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FAD6AFD1A368F9900265086 /* alaska.js */; };
 		9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */; };
 		9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6919FCB4E800264D56 /* Images.xcassets */; };
 		9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6B19FCB4E800264D56 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		9F53B1E21A0062830091C658 /* american-airlines.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "american-airlines.js"; sourceTree = "<group>"; };
+		9F53B1E41A013EF30091C658 /* delta.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = delta.js; sourceTree = "<group>"; };
+		9FAD6AF91A368F6100265086 /* airfrance.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = airfrance.js; sourceTree = "<group>"; };
+		9FAD6AFD1A368F9900265086 /* alaska.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alaska.js; sourceTree = "<group>"; };
 		9FC7CE6019FCB4E800264D56 /* flywithmiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flywithmiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC7CE6419FCB4E800264D56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 		9FC7CE6319FCB4E800264D56 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9FAD6AFD1A368F9900265086 /* alaska.js */,
+				9FAD6AF91A368F6100265086 /* airfrance.js */,
 				9F53B1E21A0062830091C658 /* american-airlines.js */,
 				9FD4C8D119FDD66100700485 /* casperjs */,
 				9FC7D0CA19FCBB6F00264D56 /* ba.js */,
@@ -118,6 +126,7 @@
 				9FC7D0CE19FCBB6F00264D56 /* moment.js */,
 				9FC7D0CF19FCBB6F00264D56 /* jquery.min.js */,
 				9FC7CE6419FCB4E800264D56 /* Info.plist */,
+				9F53B1E41A013EF30091C658 /* delta.js */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -224,12 +233,15 @@
 				9FC7D0D519FCBB6F00264D56 /* jquery.min.js in Resources */,
 				9FC7D0D219FCBB6F00264D56 /* alaska.js in Resources */,
 				9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */,
+				9FAD6AFA1A368F6100265086 /* airfrance.js in Resources */,
 				9FC7D0D019FCBB6F00264D56 /* ba.js in Resources */,
 				9FC7D0D119FCBB6F00264D56 /* ual.js in Resources */,
 				9FD4C8CE19FDC46700700485 /* airports.json in Resources */,
 				9F53B1E31A0062830091C658 /* american-airlines.js in Resources */,
+				9FAD6AFE1A368F9900265086 /* alaska.js in Resources */,
 				9FC7D0D419FCBB6F00264D56 /* moment.js in Resources */,
 				9FC7CE6D19FCB4E800264D56 /* Main.storyboard in Resources */,
+				9F53B1E51A013EF30091C658 /* delta.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -105,15 +105,18 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         var passengers = self.passengers.stringValue
         
-        var script = "alaska"
+        var script = "airfrance"
+        println(self.dataSource.indexOfSelectedItem)
         switch self.dataSource.indexOfSelectedItem {
         case 0:
-            script = "alaska"
+            script = "airfrance"
         case 1:
-            script = "american-airlines"
+            script = "alaska"
         case 2:
-            script = "ba"
+            script = "american-airlines"
         case 3:
+            script = "ba"
+        case 4:
             script = "ual"
         default:
             println("Please select a data source")
@@ -122,8 +125,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         // call external task
         var task = NSTask();
         let casperJSPath = NSBundle.mainBundle().pathForResource("casperjs", ofType: "", inDirectory: "casperjs/bin")
-        println(casperJSPath)
         task.launchPath = casperJSPath!
+        println(casperJSPath)
+        
         let scriptPath = NSBundle.mainBundle().pathForResource(script, ofType: "js")
         println(scriptPath)
         
