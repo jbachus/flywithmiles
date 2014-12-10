@@ -70,38 +70,12 @@ casper.options.waitTimeout = 25000;
 
 var dateObject = new Date(depart_date);
 var ISODate = dateObject.toISOString();
-var depart_date = moment(ISODate).format("MM-DD-YYYY");
+var depart_date = moment(ISODate).format("MM/DD/YYYY");
 
 casper.start();
 
 // console.log(moment(depart_date).format("M"));
 
-/*
-casper.start('http://www.alaskaair.com/', function() { });
-
-casper.waitForSelector("#flight", function() {
-  this.fill('form[id="frmShopping"]', {
-      'ShoppingRequestModel.IsAwardReservation' : 'true',
-      'ShoppingRequestModel.DepartureCity1': 'SFO',
-      'ShoppingRequestModel.ArrivalCity1' : 'JFK',
-      'ShoppingRequestModel.DepartureDate1' : '10/15/2014'
-  }, true);
-});
-*/
-
-/*
-casper.start('http://www.delta.com/awards/home.do?EventId=ENTER_APPLICATION', function() { });
-
-casper.waitForSelector('#FlightSearch', function() {
-  
-  ths.fill('form[id="FlightSearch"]', {
-    'departureCity[0]' : 'ATL',
-    'destinationCity[0]' : 'JFK',
-    'departureDate[0]' : '11/24/2014'
-  }, true);
-});
- */
-casper.start();
 casper.thenOpen('https://www.delta.com/air-shopping/findFlights.action', {
   method: 'post',
   data: {
@@ -128,9 +102,9 @@ casper.thenOpen('https://www.delta.com/air-shopping/findFlights.action', {
              'iamtravelling' : 'true',
              'awardTravel' : 'true',
              'tripType' : 'ONE_WAY',
-             'originCity' : 'JFK',
-             'destinationCity' : 'SFO',
-             'departureDate' : '1/15/2015',
+             'originCity' : origin,
+             'destinationCity' : destination,
+             'departureDate' : depart_date,
              'returnDate' : '',
              'is_Flex_Search' : 'false',
              'action' : 'findFlights',
@@ -139,7 +113,7 @@ casper.thenOpen('https://www.delta.com/air-shopping/findFlights.action', {
              'flexDays' : '3',
              'cabinFareClass' : 'economyBasic',
              'is_award_travel' : 'true',
-             'paxCount' : '1',
+             'paxCount' : passenger,
              '__checkbox_smTravelling' : 'true',
              '__checkbox_upgradeRequest' : 'true'
   }
