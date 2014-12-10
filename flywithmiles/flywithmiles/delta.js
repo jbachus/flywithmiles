@@ -225,11 +225,9 @@ casper.waitForResource("ResummarizeFlightResultsDWR.pageResults.dwr", function()
                 depart: $(this).find('.detailsRow p:eq(0) .detailsOrigin.airportInfo').text(),
                 depart_datetime: $(this).find('.detailsRow p:eq(0)').contents().filter(function() {
                 return this.nodeType == 3;
-              }).text().replace('()', '').trim(),
+              }).text().replace('()', '').trim().replace(/(.*)\|/g, ''),
                 arrival: $(this).find('.detailsRow p:eq(1) .detailsDestination.airportInfo').text(),
-                arrival_datetime: $(this).find('.detailsRow p:eq(1)').contents().filter(function() {
-                return this.nodeType == 3;
-              }).text().replace('()', '').trim(),
+                arrival_datetime: $(this).find('.detailsRow p:eq(1)').contents().text().trim().replace('ARRIVES', '').replace(/at(.*)/g, '').trim().replace(/(.*)\|/g, ''),
                 operated: $(this).find('.detailsRow p:eq(2) span:eq(1)').text().trim().slice(0,2),
                 flight_number: $(this).find('.detailsRow p:eq(2) span:eq(1)').text(),
                 availability: availability.join()
