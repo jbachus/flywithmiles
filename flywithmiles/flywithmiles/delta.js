@@ -160,41 +160,22 @@ casper.waitForResource("ResummarizeFlightResultsDWR.pageResults.dwr", function()
 
     var routes = [];
     var parseFares = function() {
-    
-    $('.tableHeaderHolderFare').map(function() { 
+      $('.tableHeaderHolderFare').map(function() { 
 
-      var legs = [];
-      var availability = [];
-
-        /*
-        if ($('td.CoachAwardColumn .PriceCell input', this).length > 0) {
-          availability.push('Coach Lowest');
+        var legs = [];
+        var availability = [];
+      
+        if ($('td:eq(1)', this).text().trim() != 'Not Available') {
+          availability.push('Economy');
         }
-
-        if ($('td.CoachFullFlexColumn .PriceCell input', this).length > 0) {
-          availability.push('Coach Refundable');
-        }
-
-        if ($('td.PremiumEconomyColumn .PriceCell input', this).length > 0) {
-          availability.push('Premium Economy');
-        }
-
-        if ($('td.BusinessAwardColumn .PriceCell input', this).length > 0) {
-          availability.push('Business');
-        }
-
-        if ($('td.FirstAwardColumn .PriceCell input', this).length > 0) {
+      
+        if ($('td:eq(2)', this).text().trim() != 'Not Available') {
           availability.push('First');
         }
-
-        if ($('td.FirstFullFlexColumn .PriceCell input', this).length > 0) {
-          availability.push('First Refundable');
-        }
-        */
         
         $(this).find('.fareRowDetailsContainer').map(function() {
           if ($('.alertMsgWrapper', this).length == 0) {
-                
+              
               legs.push({
                 depart: $(this).find('.detailsRow p:eq(0) .detailsOrigin.airportInfo').text(),
                 depart_datetime: $(this).find('.detailsRow p:eq(0)').contents().filter(function() {
@@ -206,14 +187,13 @@ casper.waitForResource("ResummarizeFlightResultsDWR.pageResults.dwr", function()
                 flight_number: $(this).find('.detailsRow p:eq(2) span:eq(1)').text(),
                 availability: availability.join()
               });
-      
+    
             };
-        
+      
          });
          routes.push(legs);  
-         
-        });
-      };
+      });
+    };
 
     parseFares();
                               
