@@ -14,6 +14,9 @@ class PreferencesController: NSViewController {
     @IBOutlet weak var airfranceUsername: NSTextField!
     @IBOutlet weak var airfrancePassword: NSTextField!
     
+    @IBOutlet weak var britishairwaysUsername: NSTextField!
+    @IBOutlet weak var britishairwaysPassword: NSTextField!
+    
     let service = "Flywithmiles"
     let userAccount = "FlyWithMilesUser"
     let key = "preferences"
@@ -39,6 +42,14 @@ class PreferencesController: NSViewController {
         if (dictionary?["airfrancePassword"] != nil) {
             self.airfrancePassword.stringValue = dictionary!["airfrancePassword"] as NSString
         }
+        
+        if (dictionary?["britishairwaysUsername"] != nil) {
+            self.britishairwaysUsername.stringValue = dictionary!["britishairwaysUsername"] as NSString
+        }
+        
+        if (dictionary?["britishairwaysPassword"] != nil) {
+            self.britishairwaysPassword.stringValue = dictionary!["britishairwaysPassword"] as NSString
+        }
     }
     
     @IBAction func savePreferences(sender: AnyObject) {
@@ -46,7 +57,9 @@ class PreferencesController: NSViewController {
         
         Locksmith.saveData([
             "airfranceUsername": self.airfranceUsername.stringValue,
-            "airfrancePassword" : self.airfrancePassword.stringValue
+            "airfrancePassword" : self.airfrancePassword.stringValue,
+            "britishairwaysUsername": self.britishairwaysUsername.stringValue,
+            "britishairwaysPassword" : self.britishairwaysPassword.stringValue
         ], forKey: key, inService: service, forUserAccount: userAccount)
     }
     
