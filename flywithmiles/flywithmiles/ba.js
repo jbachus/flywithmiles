@@ -36,6 +36,14 @@ if (casper.cli.has("passenger")) {
 	var passenger = casper.cli.raw.get("passenger");
 }
 
+if (casper.cli.has("username")) {
+  var username = casper.cli.raw.get("username");
+}
+
+if (casper.cli.has("password")) {
+  var password = casper.cli.raw.get("password");
+}
+
 if (casper.cli.has("verbose")) {
  	casper.options.verbose = true;
  	casper.options.logLevel = 'debug';
@@ -90,8 +98,8 @@ casper.start('https://www.britishairways.com/travel/redeem/execclub/_gf/en_us', 
 
 casper.waitForSelector("#execLoginrForm", function() {
   this.fill('form[name="form1"]', {
-      'membershipNumber' : 'jchum@primoplace.com',
-      'password': 'Pnko1b9r'
+      'membershipNumber' : username, // 'jchum@primoplace.com',
+      'password': password // 'Pnko1b9r'
   }, true);
 });
 

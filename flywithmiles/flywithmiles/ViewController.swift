@@ -35,6 +35,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     var dataArray: [Dictionary <String, String>] = []
     var savedLegs: [Dictionary <String, String>] = []
+    var preferences: NSDictionary?
+    
+    let service = "Flywithmiles"
+    let userAccount = "FlyWithMilesUser"
+    let key = "preferences"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +63,33 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             self.fromAirportComboBox.addItemWithObjectValue(subJson["location_name"].stringValue);
             self.toAirportComboxBox.addItemWithObjectValue(subJson["location_name"].stringValue);
         }
+        
+        
+        /*
+        if let dictionary = dictionary {
+            println("Dictionary: \(dictionary)")
+        }
+        
+        if let error = error {
+            println("Error: \(error)")
+        }
+        
+        if (dictionary?["airfranceUsername"] != nil) {
+            self.airfranceUsername.stringValue = dictionary!["airfranceUsername"] as NSString
+        }
+        
+        if (dictionary?["airfrancePassword"] != nil) {
+            self.airfrancePassword.stringValue = dictionary!["airfrancePassword"] as NSString
+        }
+        
+        if (dictionary?["britishairwaysUsername"] != nil) {
+            self.britishairwaysUsername.stringValue = dictionary!["britishairwaysUsername"] as NSString
+        }
+        
+        if (dictionary?["britishairwaysPassword"] != nil) {
+            self.britishairwaysPassword.stringValue = dictionary!["britishairwaysPassword"] as NSString
+        }
+        */
         
     }
 
@@ -88,6 +120,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     @IBAction func searchButton(sender: AnyObject) {
         self.statusLabel.stringValue = "Searching... plese wait"
+        
+        let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
+        self.preferences = dictionary
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd" // superset of OP's format
@@ -135,6 +170,24 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         task.arguments = [scriptPath!,
             "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers, "--ssl-protocol=tlsv1", "--ignore-ssl-errors=yes"]
+        
+        if (script == "airfrance") {
+            if var username = self.preferences!["airfranceUsername"] as NSString? {
+                task.arguments.append("--username=" + username);
+            }
+            if var password = self.preferences!["airfrancePassword"] as NSString? {
+                task.arguments.append("--password=" + password);
+            }
+        }
+        
+        if (script == "ba") {
+            if var username = self.preferences!["britishairwaysUsername"] as NSString? {
+                task.arguments.append("--username=" + username);
+            }
+            if var password = self.preferences!["britishairwaysPassword"] as NSString? {
+                task.arguments.append("--password=" + password);
+            }
+        }
         
         
         /*

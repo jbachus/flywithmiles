@@ -36,6 +36,14 @@ if (casper.cli.has("passenger")) {
   var passenger = casper.cli.raw.get("passenger");
 }
 
+if (casper.cli.has("username")) {
+  var username = casper.cli.raw.get("username");
+}
+
+if (casper.cli.has("password")) {
+  var password = casper.cli.raw.get("password");
+}
+
 if (casper.cli.has("verbose")) {
   casper.options.verbose = true;
   casper.options.logLevel = 'debug';
@@ -79,8 +87,8 @@ casper.start('https://www.airfrance.us/cgi-bin/AF/US/en/local/process/awardbooki
 
 casper.waitForSelector("#label_identifiant", function() {
   this.fill('form[name="LOGIN"]', {
-      'login' : '2117638315',
-      'password': '0502'
+      'login' : username, // '2117638315',
+      'password': password, // '0502'
   }, false);
   
   this.click('a[id="idValidate"]');
