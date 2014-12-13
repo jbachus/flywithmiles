@@ -13,6 +13,7 @@ import Foundation
 
 struct fares {
     static var savedLegs: [Dictionary <String, String>] = []
+    static var itineraryLegs: [Dictionary <String, String>] = []
     static var jsonString: String? = ""
     static var json: JSON? = nil
 }
@@ -29,6 +30,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var fromAirportComboBox: NSComboBox!
     @IBOutlet weak var toAirportComboxBox: NSComboBox!
     @IBOutlet weak var resultsTableView: NSTableView!
+    
     @IBOutlet weak var savedTableView: NSTableView!
     @IBOutlet weak var itineraryTableView: NSTableView!
     @IBOutlet weak var statusLabelCell: NSTextFieldCell!
@@ -323,6 +325,53 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         self.statusLabel.stringValue = from + " - " + to + " copied to saved tab."
         
         // println(fares.savedLegs)
+    }
+    
+    @IBAction func saveToItinerary(sender: AnyObject) {
+ 
+        
+        let rowIndex:Int = self.savedTableView.clickedRow;
+        
+        // let rowClick: AnyObject? = self.resultsTableView.rowViewAtRow(rowIndex, makeIfNecessary: true)
+        // rowClick:backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.9, alpha: 1.0)
+        // println(rowClick)
+        
+        println(self.savedTableView.rowViewAtRow(5, makeIfNecessary: true))
+        
+        // println(self.dataArray[rowIndex])
+        
+        // let json = JSON(data: fares.jsonString, error: nil)
+        // let json = JSON(object: fares.jsonString!)
+        
+        // let json = JSON.init(data: fares.jsonString, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        var fareId: String! = self.dataArray[rowIndex]["fareId"]
+        var legId: String! = self.dataArray[rowIndex]["legId"]
+        
+        let leg: JSON! = fares.json?[fareId.toInt()!+1][legId.toInt()!+1]
+        
+        var from: String = leg["depart"].string!
+        var fromTime: String = leg["depart_datetime"].string!
+        var to: String = leg["arrival"].string!
+        var toTime: String = leg["arrival_datetime"].string!
+        var airline: String = leg["operated"].string!
+        var flight: String = leg["flight_number"].string!
+        var availability: String = leg["availability"].string!
+        
+        // println(json[0]["awards"][key]["mileage"].string!)
+        
+        fares.itineraryLegs.append([
+            "savedTabRemove": "Move",
+            "savedTabFrom": from,
+            "savedTabFromTime": fromTime,
+            "savedTabTo" : to,
+            "savedTabToTime" : toTime,
+            "savedTabAirline" : airline,
+            "savedTabFlight" : flight,
+            "savedTabAvailability" : availability
+            ]);
+        
+        self.statusLabel.stringValue = from + " - " + to + " copied to saved tab."
+        
     }
 
 
