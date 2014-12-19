@@ -190,10 +190,10 @@ casper.waitForSelector("#ShoppingForm", function() {
         // should be flat, no legs
         $('.AwardFlightCell > ul > li div.SegmentDiv ', this).map(function() {
           legs.push({
-            depart: $(this).find('div:eq(3)').text(),
-            depart_datetime: $(this).find('div:eq(4)').text(),
-            arrival: $(this).find('div:eq(5)').text(),
-            arrival_datetime: $(this).find('div:eq(6)').text(),
+            depart: $(this).find('div:eq(5)').text(),
+            depart_datetime: $(this).find('div:eq(6)').text(),
+            arrival: $(this).find('div:eq(7)').text(),
+            arrival_datetime: $(this).find('div:eq(8)').text(),
             operated: $(this).find('.FlightCarrierImage img').attr('title'),
             flight_number: $(this).find('div:eq(1)').contents().get(0).nodeValue,
             availability: availability.join()
