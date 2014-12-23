@@ -31,6 +31,8 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     @IBOutlet weak var toAirportComboxBox: NSComboBox!
     @IBOutlet weak var resultsTableView: NSTableView!
     
+    @IBOutlet weak var noResults: NSTextField!
+    @IBOutlet weak var progressSpinner: NSProgressIndicator!
     @IBOutlet weak var savedTableView: NSTableView!
     @IBOutlet weak var itineraryTableView: NSTableView!
     @IBOutlet weak var statusLabelCell: NSTextFieldCell!
@@ -122,6 +124,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     
     @IBAction func searchButton(sender: AnyObject) {
         self.statusLabel.stringValue = "Searching... plese wait"
+        progressSpinner.startAnimation(self)
         
         let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
         self.preferences = dictionary
@@ -222,6 +225,12 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
         println(json)
+        statusLabel.stringValue=""
+        
+        if (json.arrayValue.count==0) {
+                statusLabel.stringValue="No results found"
+        }
+        
         
         fares.json = json
         
@@ -254,8 +263,10 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         }
         
         // refresh table
+
+        
         self.resultsTableView.reloadData();
-        self.statusLabel.stringValue = ""
+        progressSpinner.stopAnimation(self)
     }
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
