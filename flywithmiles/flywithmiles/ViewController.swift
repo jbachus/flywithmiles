@@ -140,13 +140,38 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         let jsonData = NSData(contentsOfFile: path!)!
         let jsonAirports = JSON(data: jsonData)
         
-        var fromAirportCode = jsonAirports[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"].stringValue
-        var toAirportCode = jsonAirports[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"].stringValue
+        var fromAirportCode = ""
+        var toAirportCode = ""
+        
+        if (self.fromAirportComboBox.indexOfSelectedItem == -1) {
+            self.statusLabel.stringValue = "Please select an airport to fly from."
+            return
+        }
+        
+        if (self.toAirportComboxBox.indexOfSelectedItem == -1) {
+            self.statusLabel.stringValue = "Please select an airport to fly to."
+            return
+        }
+        
+        if var fromAirportCode = jsonAirports[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"].string {
+           
+        } else {
+            self.statusLabel.stringValue = "From airport is invalid or not found."
+            return
+        }
+        fromAirportCode = jsonAirports[self.fromAirportComboBox.indexOfSelectedItem]["airport_code"].stringValue
+        
+        if var toAirportCode = jsonAirports[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"].string {
+            
+        } else {
+           self.statusLabel.stringValue = "To airport is invalid or not found."
+           return
+        }
+        toAirportCode = jsonAirports[self.toAirportComboxBox.indexOfSelectedItem]["airport_code"].stringValue
         
         var passengers = self.passengers.stringValue
         
-        var script = "airfrance"
-        println(self.dataSource.indexOfSelectedItem)
+        var script = ""
         switch self.dataSource.indexOfSelectedItem {
         case 0:
             script = "airfrance"
@@ -161,16 +186,19 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         case 5:
             script = "ual"
         default:
-            println("Please select a data source")
+            self.statusLabel.stringValue = "Please select a data source."
+            return
         }
         
         // call external task
         var task = NSTask();
         let casperJSPath = NSBundle.mainBundle().pathForResource("casperjs", ofType: "", inDirectory: "casperjs/bin")
         task.launchPath = casperJSPath!
+        println("==CASPERJSPATH==")
         println(casperJSPath)
         
         let scriptPath = NSBundle.mainBundle().pathForResource(script, ofType: "js")
+        println("==SCRIPT PATH==")
         println(scriptPath)
         
         task.arguments = [scriptPath!,
@@ -194,6 +222,7 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             }
         }
         
+        println(task.arguments)
         
         /*
         var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
@@ -221,16 +250,15 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
         fares.jsonString = NSString(data: data, encoding: NSUTF8StringEncoding)!
         
         // DEBUG
-        // println(fares.jsonString)
+        println(fares.jsonString)
         
         let json = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: nil)
-        println(json)
+        // println(json)
         statusLabel.stringValue=""
         
         if (json.arrayValue.count==0) {
-                statusLabel.stringValue="No results found"
+            statusLabel.stringValue = "No results found"
         }
-        
         
         fares.json = json
         

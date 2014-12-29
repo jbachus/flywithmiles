@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F53B1E31A0062830091C658 /* american-airlines.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F53B1E21A0062830091C658 /* american-airlines.js */; };
 		9F53B1E51A013EF30091C658 /* delta.js in Resources */ = {isa = PBXBuildFile; fileRef = 9F53B1E41A013EF30091C658 /* delta.js */; };
+		9F7CBEBF1A511EC90083782A /* phantomjs.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9F7CBEBE1A511EC90083782A /* phantomjs.entitlements */; };
 		9FAD6AFA1A368F6100265086 /* airfrance.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FAD6AF91A368F6100265086 /* airfrance.js */; };
 		9FAD6AFE1A368F9900265086 /* alaska.js in Resources */ = {isa = PBXBuildFile; fileRef = 9FAD6AFD1A368F9900265086 /* alaska.js */; };
 		9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7CE6519FCB4E800264D56 /* AppDelegate.swift */; };
@@ -25,6 +26,8 @@
 		9FD1744619FD308700CE90DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD1744519FD308700CE90DE /* ViewController.swift */; };
 		9FD4C8CE19FDC46700700485 /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4C8CD19FDC46700700485 /* airports.json */; };
 		9FD4C8D219FDD66100700485 /* casperjs in Resources */ = {isa = PBXBuildFile; fileRef = 9FD4C8D119FDD66100700485 /* casperjs */; };
+		9FFE7C511A4FA93100D3CF51 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE7C4F1A4FA93100D3CF51 /* Locksmith.swift */; };
+		9FFE7C521A4FA93100D3CF51 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE7C501A4FA93100D3CF51 /* LocksmithRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,7 @@
 /* Begin PBXFileReference section */
 		9F53B1E21A0062830091C658 /* american-airlines.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "american-airlines.js"; sourceTree = "<group>"; };
 		9F53B1E41A013EF30091C658 /* delta.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = delta.js; sourceTree = "<group>"; };
+		9F7CBEBE1A511EC90083782A /* phantomjs.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phantomjs.entitlements; sourceTree = "<group>"; };
 		9FAD6AF91A368F6100265086 /* airfrance.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = airfrance.js; sourceTree = "<group>"; };
 		9FAD6AFD1A368F9900265086 /* alaska.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = alaska.js; sourceTree = "<group>"; };
 		9FC7CE6019FCB4E800264D56 /* flywithmiles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flywithmiles.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +64,9 @@
 		9FD1744519FD308700CE90DE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9FD4C8CD19FDC46700700485 /* airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airports.json; sourceTree = "<group>"; };
 		9FD4C8D119FDD66100700485 /* casperjs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = casperjs; sourceTree = "<group>"; };
+		9FFE7C4F1A4FA93100D3CF51 /* Locksmith.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locksmith.swift; sourceTree = "<group>"; };
+		9FFE7C501A4FA93100D3CF51 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
+		9FFE7C531A4FAA0200D3CF51 /* flywithmiles.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = flywithmiles.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +108,10 @@
 		9FC7CE6219FCB4E800264D56 /* flywithmiles */ = {
 			isa = PBXGroup;
 			children = (
+				9FFE7C531A4FAA0200D3CF51 /* flywithmiles.entitlements */,
+				9F7CBEBE1A511EC90083782A /* phantomjs.entitlements */,
+				9FFE7C4F1A4FA93100D3CF51 /* Locksmith.swift */,
+				9FFE7C501A4FA93100D3CF51 /* LocksmithRequest.swift */,
 				9FD4C8CD19FDC46700700485 /* airports.json */,
 				9FD1744519FD308700CE90DE /* ViewController.swift */,
 				9FC7D0D619FCBB9600264D56 /* savedTabController.swift */,
@@ -198,6 +209,11 @@
 					9FC7CE5F19FCB4E800264D56 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 2L9SA6Z57J;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					9FC7CE7119FCB4E800264D56 = {
 						CreatedOnToolsVersion = 6.1;
@@ -235,6 +251,7 @@
 				9FC7CE6A19FCB4E800264D56 /* Images.xcassets in Resources */,
 				9FAD6AFA1A368F6100265086 /* airfrance.js in Resources */,
 				9FC7D0D019FCBB6F00264D56 /* ba.js in Resources */,
+				9F7CBEBF1A511EC90083782A /* phantomjs.entitlements in Resources */,
 				9FC7D0D119FCBB6F00264D56 /* ual.js in Resources */,
 				9FD4C8CE19FDC46700700485 /* airports.json in Resources */,
 				9F53B1E31A0062830091C658 /* american-airlines.js in Resources */,
@@ -259,9 +276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FFE7C511A4FA93100D3CF51 /* Locksmith.swift in Sources */,
 				9FC7D0D719FCBB9600264D56 /* savedTabController.swift in Sources */,
 				9FC7CE8319FCBA9400264D56 /* JSON.swift in Sources */,
 				9FD1744619FD308700CE90DE /* ViewController.swift in Sources */,
+				9FFE7C521A4FA93100D3CF51 /* LocksmithRequest.swift in Sources */,
 				9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,11 +396,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flywithmiles/flywithmiles.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = flywithmiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
 			};
@@ -391,11 +413,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = flywithmiles/flywithmiles.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = flywithmiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
 			};
