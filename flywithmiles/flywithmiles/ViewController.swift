@@ -123,8 +123,6 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     }
     
     @IBAction func searchButton(sender: AnyObject) {
-        self.statusLabel.stringValue = "Searching... plese wait"
-        progressSpinner.startAnimation(self)
         
         let (dictionary, error) = Locksmith.loadData(forKey: key, inService: service, forUserAccount: userAccount)
         self.preferences = dictionary
@@ -210,25 +208,35 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             var username = self.preferences!["airfranceUsername"] as NSString
             var password = self.preferences!["airfrancePassword"] as NSString
             
-            task.arguments.append("--username=" + username);
-            task.arguments.append("--password=" + password);
+                if (username != "" && password != "") {
+                    task.arguments.append("--username=" + username);
+                    task.arguments.append("--password=" + password);
+                } else {
+                    println("username or password missing")
+                    self.performSegueWithIdentifier("showPrefs", sender: self)
+                }
                 
             } else {
                 println("username or password missing")
+                self.performSegueWithIdentifier("showPrefs", sender: self)
             }
-        }
-        
-        if (script == "ba") {
+        } else if (script == "ba") {
             if ((self.preferences?["britishairwaysUsername"] != nil) && (self.preferences?["britishairwaysPassword"] != nil))
             {
                 var username = self.preferences!["britishairwaysUsername"] as NSString
                 var password = self.preferences!["britishairwaysPassword"] as NSString
                 
-                task.arguments.append("--username=" + username);
-                task.arguments.append("--password=" + password);
+                if (username != "" && password != "") {
+                    task.arguments.append("--username=" + username);
+                    task.arguments.append("--password=" + password);
+                } else {
+                    println("username or password missing")
+                    self.performSegueWithIdentifier("showPrefs", sender: self)
+                }
                 
             } else {
                 println("username or password missing")
+                self.performSegueWithIdentifier("showPrefs", sender: self)
             }
         }
         
@@ -253,6 +261,9 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             // Handle the task ending here
         }
 
+        self.statusLabel.stringValue = "Searching... plese wait"
+        progressSpinner.startAnimation(self)
+        
         task.launch()
         
         let data = pipe.fileHandleForReading.readDataToEndOfFile()

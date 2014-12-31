@@ -50,10 +50,36 @@ class PreferencesController: NSViewController {
         if (dictionary?["britishairwaysPassword"] != nil) {
             self.britishairwaysPassword.stringValue = dictionary!["britishairwaysPassword"] as NSString
         }
+        
     }
     
     @IBAction func savePreferences(sender: AnyObject) {
         Locksmith.deleteData(forKey: key, inService: service, forUserAccount: userAccount)
+        
+       /* if (self.airfranceUsername.stringValue != "") {
+            Locksmith.saveData([
+                "airfranceUsername": self.airfranceUsername.stringValue,
+                ], forKey: key, inService: service, forUserAccount: userAccount)
+        }
+        
+        if (self.airfrancePassword.stringValue != "") {
+            Locksmith.saveData([
+                "airfrancePassword": self.airfrancePassword.stringValue,
+                ], forKey: key, inService: service, forUserAccount: userAccount)
+        }
+        
+        if (self.britishairwaysUsername.stringValue != "") {
+            Locksmith.saveData([
+                "britishairwaysUsername": self.britishairwaysUsername.stringValue,
+                ], forKey: key, inService: service, forUserAccount: userAccount)
+        }
+        
+        if (self.britishairwaysPassword.stringValue != "") {
+            Locksmith.saveData([
+                "britishairwaysPassword": self.britishairwaysPassword.stringValue,
+                ], forKey: key, inService: service, forUserAccount: userAccount)
+        } */
+        
         
         Locksmith.saveData([
             "airfranceUsername": self.airfranceUsername.stringValue,
@@ -61,6 +87,8 @@ class PreferencesController: NSViewController {
             "britishairwaysUsername": self.britishairwaysUsername.stringValue,
             "britishairwaysPassword" : self.britishairwaysPassword.stringValue
         ], forKey: key, inService: service, forUserAccount: userAccount)
+        
+        super.dismissController(presentingViewController)
     }
     
 }

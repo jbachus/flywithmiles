@@ -23,7 +23,7 @@
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
-                                                <segue destination="Vla-mG-v4j" kind="show" id="QId-ms-9y2"/>
+                                                <segue destination="Vla-mG-v4j" kind="modal" id="8Wn-hW-mx4"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -949,7 +949,7 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowHeight="28" headerView="dH4-eO-th7" id="YLi-gI-eK5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="912" height="30"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="913" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1224,7 +1224,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
-                                                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="2PF-Th-01S">
+                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="2PF-Th-01S">
                                                         <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
@@ -1377,7 +1377,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
-                                                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="ziw-W9-kH0">
+                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ziw-W9-kH0">
                                                         <rect key="frame" x="1" y="116.14644730091095" width="234" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
@@ -1451,6 +1451,7 @@
                         <outlet property="savedTableView" destination="YBG-vi-YIB" id="b3a-Vf-SgF"/>
                         <outlet property="statusLabel" destination="Mth-cf-ONB" id="EH3-q2-hhg"/>
                         <outlet property="toAirportComboxBox" destination="wIw-qB-GI5" id="RXQ-Fb-CcG"/>
+                        <segue destination="Vla-mG-v4j" kind="sheet" identifier="showPrefs" id="mNV-lI-dn8"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1465,7 +1466,10 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="74" y="872"/>
+            <point key="canvasLocation" x="-105" y="868"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Wn-hW-mx4"/>
+    </inferredMetricsTieBreakers>
 </document>
