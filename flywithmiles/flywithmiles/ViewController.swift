@@ -205,20 +205,30 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
             "--origin=" + fromAirportCode, "--destination=" + toAirportCode, "--depart_date=" + dateStr, "--passenger=" + passengers, "--ssl-protocol=tlsv1", "--ignore-ssl-errors=yes"]
         
         if (script == "airfrance") {
-            if var username = self.preferences!["airfranceUsername"] as NSString? {
-                task.arguments.append("--username=" + username);
-            }
-            if var password = self.preferences!["airfrancePassword"] as NSString? {
-                task.arguments.append("--password=" + password);
+            if ((self.preferences?["airfranceUsername"] != nil) && (self.preferences?["airfrancePassword"] != nil))
+            {
+            var username = self.preferences!["airfranceUsername"] as NSString
+            var password = self.preferences!["airfrancePassword"] as NSString
+            
+            task.arguments.append("--username=" + username);
+            task.arguments.append("--password=" + password);
+                
+            } else {
+                println("username or password missing")
             }
         }
         
         if (script == "ba") {
-            if var username = self.preferences!["britishairwaysUsername"] as NSString? {
+            if ((self.preferences?["britishairwaysUsername"] != nil) && (self.preferences?["britishairwaysPassword"] != nil))
+            {
+                var username = self.preferences!["britishairwaysUsername"] as NSString
+                var password = self.preferences!["britishairwaysPassword"] as NSString
+                
                 task.arguments.append("--username=" + username);
-            }
-            if var password = self.preferences!["britishairwaysPassword"] as NSString? {
                 task.arguments.append("--password=" + password);
+                
+            } else {
+                println("username or password missing")
             }
         }
         
