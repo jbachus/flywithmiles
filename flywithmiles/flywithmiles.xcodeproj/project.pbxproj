@@ -29,6 +29,7 @@
 		9FFE7C511A4FA93100D3CF51 /* Locksmith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE7C4F1A4FA93100D3CF51 /* Locksmith.swift */; };
 		9FFE7C521A4FA93100D3CF51 /* LocksmithRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE7C501A4FA93100D3CF51 /* LocksmithRequest.swift */; };
 		F42FB9AD1A54578000B83CBC /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FB9AC1A54578000B83CBC /* PreferencesController.swift */; };
+		F42FB9B31A58BB5900B83CBC /* CaseInsensitiveComboxBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42FB9B21A58BB5900B83CBC /* CaseInsensitiveComboxBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		9FFE7C501A4FA93100D3CF51 /* LocksmithRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocksmithRequest.swift; sourceTree = "<group>"; };
 		9FFE7C531A4FAA0200D3CF51 /* flywithmiles.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = flywithmiles.entitlements; sourceTree = "<group>"; };
 		F42FB9AC1A54578000B83CBC /* PreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
+		F42FB9B21A58BB5900B83CBC /* CaseInsensitiveComboxBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseInsensitiveComboxBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		9FC7CE5719FCB4E800264D56 = {
 			isa = PBXGroup;
 			children = (
+				F42FB9B21A58BB5900B83CBC /* CaseInsensitiveComboxBox.swift */,
 				9FC7CE6219FCB4E800264D56 /* flywithmiles */,
 				9FC7CE7519FCB4E800264D56 /* flywithmilesTests */,
 				9FC7CE6119FCB4E800264D56 /* Products */,
@@ -286,6 +289,7 @@
 				9FFE7C521A4FA93100D3CF51 /* LocksmithRequest.swift in Sources */,
 				F42FB9AD1A54578000B83CBC /* PreferencesController.swift in Sources */,
 				9FC7CE6619FCB4E800264D56 /* AppDelegate.swift in Sources */,
+				F42FB9B31A58BB5900B83CBC /* CaseInsensitiveComboxBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = flywithmiles/flywithmiles.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -410,6 +415,7 @@
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.10;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -417,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = flywithmiles/flywithmiles.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;

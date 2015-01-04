@@ -866,7 +866,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <comboBox autoresizesSubviews="NO" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBh-Pz-3dk">
+                            <comboBox autoresizesSubviews="NO" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eBh-Pz-3dk" customClass="CaseInsensitiveComboxBox" customModule="flywithmiles" customModuleProvider="target">
                                 <rect key="frame" x="133" y="517" width="368" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="14b-a6-WzB">
                                     <font key="font" metaFont="system"/>
@@ -874,7 +874,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                             </comboBox>
-                            <comboBox autoresizesSubviews="NO" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wIw-qB-GI5">
+                            <comboBox autoresizesSubviews="NO" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wIw-qB-GI5" customClass="CaseInsensitiveComboxBox" customModule="flywithmiles" customModuleProvider="target">
                                 <rect key="frame" x="133" y="489" width="368" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" numberOfVisibleItems="5" id="peq-HP-fOw">
                                     <font key="font" metaFont="system"/>
@@ -1470,6 +1470,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8Wn-hW-mx4"/>
+        <segue reference="mNV-lI-dn8"/>
     </inferredMetricsTieBreakers>
 </document>
