@@ -45,6 +45,11 @@ class ViewController: NSViewController, NSTableViewDataSource, NSTableViewDelega
     let userAccount = "FlyWithMilesUser"
     let key = "preferences"
 
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        self.view.window?.title = "Fly With Miles"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
